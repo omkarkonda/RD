@@ -4,9 +4,335 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <!-- font -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
+
+    <!-- anchor position polyfill -->
+    <script type="module">
+        if (!("anchorName" in document.documentElement.style)) {
+          window.ANCHOR_POSITIONING_POLYFILL_OPTIONS = {
+            elements: undefined,
+            excludeInlineStyles: false,
+            useAnimationFrame: false,
+          };
+          import("https://unpkg.com/@oddbird/css-anchor-positioning");
+        }
+      </script>
+
+    <!-- agGrid -->    
+    <script src="https://cdn.jsdelivr.net/npm/ag-grid-community@23.0.2/dist/ag-grid-community.min.noStyle.min.js"></script>
+    <!-- agGrid styles -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ag-grid-community@23.0.2/dist/styles/ag-grid.css"/>
     <link rel="stylesheet" href="styles.css">    
+    <link rel="stylesheet" href="./ag-theme-billing.css"/>
+
+
 </head>
 <body>
+    <section id="billing-tab">
+        <nav>
+            <ul>
+                <li>Visits</li>
+                <li>Charge Capture</li>
+                <li>Create & Send Claims</li>
+                <li>Claim Tracking</li>
+                <li class="active">Rejections/Denials</li>
+                <li>Apply Payments</li>
+                <li>Bill Patient</li>
+                <li>Financial Reporting</li>
+            </ul>
+        </nav>
     
+        <ul class="switch">
+            <li class="">Rejections</li>
+            <li class="active">Denials</li>
+        </ul>
+    
+        <section id="denials" class="billing-module-container">
+            <div class="billing-module-left-column">
+                <div class="billing-module-left-column-header">
+                    <h2>Denial Statistics</h2>
+                    <button class="filter icon label" popovertarget="denial-stat-filter">
+                        <i>
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                <path d="M14.6668 12.4033C14.6668 12.5359 14.6142 12.6631 14.5204 12.7569C14.4266 12.8506 14.2994 12.9033 14.1668 12.9033H10.7668C10.6555 13.3186 10.4102 13.6855 10.0691 13.9472C9.728 14.2089 9.31009 14.3507 8.88016 14.3507C8.45024 14.3507 8.03232 14.2089 7.69121 13.9472C7.3501 13.6855 7.10486 13.3186 6.9935 12.9033H1.8335C1.70089 12.9033 1.57371 12.8506 1.47994 12.7569C1.38617 12.6631 1.3335 12.5359 1.3335 12.4033C1.3335 12.2707 1.38617 12.1435 1.47994 12.0498C1.57371 11.956 1.70089 11.9033 1.8335 11.9033H6.9935C7.10486 11.4881 7.3501 11.1212 7.69121 10.8595C8.03232 10.5978 8.45024 10.456 8.88016 10.456C9.31009 10.456 9.728 10.5978 10.0691 10.8595C10.4102 11.1212 10.6555 11.4881 10.7668 11.9033H14.1668C14.2994 11.9033 14.4266 11.956 14.5204 12.0498C14.6142 12.1435 14.6668 12.2707 14.6668 12.4033ZM14.6668 3.59666C14.6668 3.72927 14.6142 3.85645 14.5204 3.95021C14.4266 4.04398 14.2994 4.09666 14.1668 4.09666H12.5335C12.4221 4.51191 12.1769 4.87882 11.8358 5.14051C11.4947 5.40219 11.0768 5.54403 10.6468 5.54403C10.2169 5.54403 9.79899 5.40219 9.45788 5.14051C9.11677 4.87882 8.87152 4.51191 8.76016 4.09666H1.8335C1.76784 4.09666 1.70282 4.08373 1.64215 4.0586C1.58149 4.03347 1.52637 3.99664 1.47994 3.95021C1.43351 3.90379 1.39668 3.84867 1.37156 3.788C1.34643 3.72734 1.3335 3.66232 1.3335 3.59666C1.3335 3.531 1.34643 3.46598 1.37156 3.40532C1.39668 3.34466 1.43351 3.28954 1.47994 3.24311C1.52637 3.19668 1.58149 3.15985 1.64215 3.13472C1.70282 3.10959 1.76784 3.09666 1.8335 3.09666H8.76016C8.87152 2.68141 9.11677 2.3145 9.45788 2.05281C9.79899 1.79113 10.2169 1.64929 10.6468 1.64929C11.0768 1.64929 11.4947 1.79113 11.8358 2.05281C12.1769 2.3145 12.4221 2.68141 12.5335 3.09666H14.1668C14.2327 3.09576 14.2982 3.10808 14.3592 3.13289C14.4203 3.1577 14.4758 3.1945 14.5224 3.24111C14.569 3.28772 14.6058 3.3432 14.6306 3.40426C14.6554 3.46533 14.6677 3.53075 14.6668 3.59666ZM14.6668 7.99666C14.6677 8.06257 14.6554 8.12799 14.6306 8.18906C14.6058 8.25013 14.569 8.3056 14.5224 8.35221C14.4758 8.39882 14.4203 8.43562 14.3592 8.46043C14.2982 8.48524 14.2327 8.49756 14.1668 8.49666H6.36683C6.25547 8.91191 6.01022 9.27882 5.66911 9.54051C5.328 9.80219 4.91009 9.94403 4.48016 9.94403C4.05024 9.94403 3.63232 9.80219 3.29121 9.54051C2.95011 9.27882 2.70486 8.91191 2.5935 8.49666H1.8335C1.70089 8.49666 1.57371 8.44398 1.47994 8.35021C1.38617 8.25645 1.3335 8.12927 1.3335 7.99666C1.3335 7.86405 1.38617 7.73688 1.47994 7.64311C1.57371 7.54934 1.70089 7.49666 1.8335 7.49666H2.5935C2.70486 7.08141 2.95011 6.7145 3.29121 6.45281C3.63232 6.19113 4.05024 6.04929 4.48016 6.04929C4.91009 6.04929 5.328 6.19113 5.66911 6.45281C6.01022 6.7145 6.25547 7.08141 6.36683 7.49666H14.1668C14.2994 7.49666 14.4266 7.54934 14.5204 7.64311C14.6142 7.73688 14.6668 7.86405 14.6668 7.99666Z" />
+                                </svg>                                
+                            </i>
+                        <span>Filter</span>
+                    </button>
+                    <button class="icon">csv</button>
+                </div>
+                <div class="billing-module-left-column-body">
+                    <ul class="left-column-tabs">
+                        <li>Code</li>
+                        <li class="active">Payer</li>
+                        <li>Payer Sequence</li>
+                    </ul>
+                    <div id="code" class="hide">Code</div>
+                    <div id="payer" class="grid ag-theme-billing">
+
+                    </div>
+                    <div id="payer-seq" class="hide">payer sequence</div>
+
+                </div>    
+            </div>
+            <div class="billing-module-right-column">
+                <div class="billing-module-right-column-header">
+                    <h2>Denials & Zero Paids</h2>
+                    <i>
+                        <svg width="16" height="10" viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect width="16" height="2" rx="1" fill="#383838"/>
+                            <rect y="4" width="16" height="2" rx="1" fill="#383838"/>
+                            <rect y="8" width="16" height="2" rx="1" fill="#383838"/>
+                            </svg>                        
+                    </i>   
+                    <div class="toggle-resolved-claims">
+                        <input type="checkbox" name="" id="resolved_claims">
+                        <label for="resolved_claims">View Resolved Claims</label>
+                        <span>View Resolved Claims</span>
+                    </div>                 
+                </div>
+                
+                <!-- Filters -->
+                <div class="btn-row">
+                    <button class="icon label">
+                        <i>
+                            <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
+                                <path d="M14.6668 12.4033C14.6668 12.5359 14.6142 12.6631 14.5204 12.7569C14.4266 12.8506 14.2994 12.9033 14.1668 12.9033H10.7668C10.6555 13.3186 10.4102 13.6855 10.0691 13.9472C9.728 14.2089 9.31009 14.3507 8.88016 14.3507C8.45024 14.3507 8.03232 14.2089 7.69121 13.9472C7.3501 13.6855 7.10486 13.3186 6.9935 12.9033H1.8335C1.70089 12.9033 1.57371 12.8506 1.47994 12.7569C1.38617 12.6631 1.3335 12.5359 1.3335 12.4033C1.3335 12.2707 1.38617 12.1435 1.47994 12.0498C1.57371 11.956 1.70089 11.9033 1.8335 11.9033H6.9935C7.10486 11.4881 7.3501 11.1212 7.69121 10.8595C8.03232 10.5978 8.45024 10.456 8.88016 10.456C9.31009 10.456 9.728 10.5978 10.0691 10.8595C10.4102 11.1212 10.6555 11.4881 10.7668 11.9033H14.1668C14.2994 11.9033 14.4266 11.956 14.5204 12.0498C14.6142 12.1435 14.6668 12.2707 14.6668 12.4033ZM14.6668 3.59666C14.6668 3.72927 14.6142 3.85645 14.5204 3.95021C14.4266 4.04398 14.2994 4.09666 14.1668 4.09666H12.5335C12.4221 4.51191 12.1769 4.87882 11.8358 5.14051C11.4947 5.40219 11.0768 5.54403 10.6468 5.54403C10.2169 5.54403 9.79899 5.40219 9.45788 5.14051C9.11677 4.87882 8.87152 4.51191 8.76016 4.09666H1.8335C1.76784 4.09666 1.70282 4.08373 1.64215 4.0586C1.58149 4.03347 1.52637 3.99664 1.47994 3.95021C1.43351 3.90379 1.39668 3.84867 1.37156 3.788C1.34643 3.72734 1.3335 3.66232 1.3335 3.59666C1.3335 3.531 1.34643 3.46598 1.37156 3.40532C1.39668 3.34466 1.43351 3.28954 1.47994 3.24311C1.52637 3.19668 1.58149 3.15985 1.64215 3.13472C1.70282 3.10959 1.76784 3.09666 1.8335 3.09666H8.76016C8.87152 2.68141 9.11677 2.3145 9.45788 2.05281C9.79899 1.79113 10.2169 1.64929 10.6468 1.64929C11.0768 1.64929 11.4947 1.79113 11.8358 2.05281C12.1769 2.3145 12.4221 2.68141 12.5335 3.09666H14.1668C14.2327 3.09576 14.2982 3.10808 14.3592 3.13289C14.4203 3.1577 14.4758 3.1945 14.5224 3.24111C14.569 3.28772 14.6058 3.3432 14.6306 3.40426C14.6554 3.46533 14.6677 3.53075 14.6668 3.59666ZM14.6668 7.99666C14.6677 8.06257 14.6554 8.12799 14.6306 8.18906C14.6058 8.25013 14.569 8.3056 14.5224 8.35221C14.4758 8.39882 14.4203 8.43562 14.3592 8.46043C14.2982 8.48524 14.2327 8.49756 14.1668 8.49666H6.36683C6.25547 8.91191 6.01022 9.27882 5.66911 9.54051C5.328 9.80219 4.91009 9.94403 4.48016 9.94403C4.05024 9.94403 3.63232 9.80219 3.29121 9.54051C2.95011 9.27882 2.70486 8.91191 2.5935 8.49666H1.8335C1.70089 8.49666 1.57371 8.44398 1.47994 8.35021C1.38617 8.25645 1.3335 8.12927 1.3335 7.99666C1.3335 7.86405 1.38617 7.73688 1.47994 7.64311C1.57371 7.54934 1.70089 7.49666 1.8335 7.49666H2.5935C2.70486 7.08141 2.95011 6.7145 3.29121 6.45281C3.63232 6.19113 4.05024 6.04929 4.48016 6.04929C4.91009 6.04929 5.328 6.19113 5.66911 6.45281C6.01022 6.7145 6.25547 7.08141 6.36683 7.49666H14.1668C14.2994 7.49666 14.4266 7.54934 14.5204 7.64311C14.6142 7.73688 14.6668 7.86405 14.6668 7.99666Z" />
+                                </svg>                                
+                            </i>
+                        <span>Filter</span>
+                    </button>
+                    <button class="icon">csv</button>
+                </div>
+
+                <!-- Grid -->
+                <div id="denialsGrid" class="grid ag-theme-billing"></div>
+
+                <div class="balance-pagination">
+                    <span>Total Balance: $126777,485.34</span>
+                    <span>Total Denied Amount: $237,645.34</span>
+                    <div class="pagination">
+                        <button>&lt;</button>
+                        <span>1-100 from 1244</span>
+                        <button>&gt;</button>
+                    </div>
+                </div>
+
+                <div class="btn-row">
+                    <button class="bttn secondary">Resubmit Claim</button>
+                    <button class="bttn secondary">Write Off Balance</button>
+                    <button class="bttn secondary">Transfer Balance</button>
+                </div>
+
+
+            </div>   
+        </section>        
+
+        <div popover id="denial-stat-filter" class="grid-filter">
+            <div class="header">
+                <h3>Filters</h3>
+                <svg width="9" height="8" viewBox="0 0 9 8" fill="none">
+                    <path d="M0.898086 0.22364C1.03797 0.0804433 1.22766 0 1.42546 0C1.62325 0 1.81295 0.0804433 1.95283 0.22364L4.59044 2.92455L7.22805 0.22364C7.36873 0.0845015 7.55716 0.0075115 7.75274 0.00925183C7.94832 0.0109922 8.13541 0.0913237 8.27371 0.232944C8.41201 0.374565 8.49046 0.566144 8.49216 0.766418C8.49386 0.966693 8.41867 1.15964 8.2828 1.3037L5.64519 4.00461L8.2828 6.70552C8.41867 6.84958 8.49386 7.04253 8.49216 7.2428C8.49046 7.44308 8.41201 7.63466 8.27371 7.77628C8.13541 7.9179 7.94832 7.99823 7.75274 7.99997C7.55716 8.00171 7.36873 7.92472 7.22805 7.78558L4.59044 5.08467L1.95283 7.78558C1.81215 7.92472 1.62372 8.00171 1.42814 7.99997C1.23256 7.99823 1.04547 7.9179 0.907172 7.77628C0.768871 7.63466 0.690422 7.44308 0.688722 7.2428C0.687023 7.04253 0.762208 6.84958 0.898086 6.70552L3.5357 4.00461L0.898086 1.3037C0.758245 1.16046 0.679688 0.96621 0.679688 0.763669C0.679688 0.561128 0.758245 0.36688 0.898086 0.22364Z" fill="#383838"/>
+                    </svg>                    
+            </div>
+            <fieldset>
+                <div class="row">
+                    <span>Date Type</span>
+                    <button class="reset">Reset</button>                    
+                </div>
+                <div class="row field-group v">
+                    <label for="dos">
+                        <input type="radio" name="datetype" id="dos"> 
+                        <span>DOS (Date of Service)</span>
+                    </label>
+                    <label for="denial-date">
+                        <input type="radio" name="datetype" id="denial-date">
+                        <span>Denial Date</span>
+                    </label>
+                </div>
+            </fieldset>
+            <fieldset>
+                <div class="row">
+                    <span>Date Range</span>
+                    <button class="reset">Reset</button>                    
+                </div>
+                <div class="row field-group">
+                    <label for="from-date" class="col">
+                        <span>From:</span>
+                        <input type="date" name="from" id="from-date">
+                    </label>
+                    <label for="to-date" class="col">
+                        <span>To:</span>
+                        <input type="date" name="from" id="to-date">
+                    </label>
+                </div>
+            </fieldset>
+            <fieldset>
+                <div class="row">
+
+                    <button class="bttn resetall">Reset All</button>
+                    <button class="bttn primary">Apply</button>
+                </div>
+            </fieldset>
+        </div>
+    </section>
+
+    <script>
+
+        let columnDefs_payer = [
+            {headerName: 'Payer', field: 'payer', width:105},
+            {headerName: 'Numbers of Claims Denied', field: 'numbers_of_claims_denied', width:75},
+            {headerName: 'Claim Balance ($)', field: 'claim_balance', width:100}            
+        ]
+
+        let rowData_payer = [
+            {payer:'Medicare', numbers_of_claims_denied: 10, claim_balance: '$1000'},
+            {payer:'Medicaid', numbers_of_claims_denied: 15, claim_balance: '$1500'},
+            {payer:'Humana', numbers_of_claims_denied: 8, claim_balance: '$800'},
+            {payer:'Aetna', numbers_of_claims_denied: 12, claim_balance: '$1200'},
+            {payer:'United Healthcare', numbers_of_claims_denied: 20, claim_balance: '$2000'},
+            {payer:'Blue Cross Blue Shield', numbers_of_claims_denied: 18, claim_balance: '$1800'},
+            {payer:'Cigna', numbers_of_claims_denied: 6, claim_balance: '$600'},
+            {payer:'Kaiser Permanente', numbers_of_claims_denied: 22, claim_balance: '$2200'},
+            {payer:'Anthem', numbers_of_claims_denied: 14, claim_balance: '$1400'},
+            {payer:'Centene', numbers_of_claims_denied: 16, claim_balance: '$1600'},
+            {payer:'WellCare', numbers_of_claims_denied: 10, claim_balance: '$1000'},
+            {payer:'Ambetter', numbers_of_claims_denied: 12, claim_balance: '$1200'},
+            {payer:'Molina', numbers_of_claims_denied: 8, claim_balance: '$800'},
+            {payer:'Oscar', numbers_of_claims_denied: 14, claim_balance: '$1400'},
+            {payer:'Bright Health', numbers_of_claims_denied: 10, claim_balance: '$1000'},
+            {payer:'Sundial', numbers_of_claims_denied: 12, claim_balance: '$1200'},
+            {payer:'Friday Health', numbers_of_claims_denied: 8, claim_balance: '$800'},
+            {payer:'Oscar Health', numbers_of_claims_denied: 14, claim_balance: '$1400'},
+            {payer:'Bind', numbers_of_claims_denied: 10, claim_balance: '$1000'},
+            {payer:'Sidecar Health', numbers_of_claims_denied: 12, claim_balance: '$1200'},
+            {payer:'WellCare', numbers_of_claims_denied: 10, claim_balance: '$1000'},
+            {payer:'Ambetter', numbers_of_claims_denied: 12, claim_balance: '$1200'},
+            {payer:'Molina', numbers_of_claims_denied: 8, claim_balance: '$800'},
+            {payer:'Oscar', numbers_of_claims_denied: 14, claim_balance: '$1400'},
+            {payer:'Bright Health', numbers_of_claims_denied: 10, claim_balance: '$1000'},
+            {payer:'Sundial', numbers_of_claims_denied: 12, claim_balance: '$1200'},
+            {payer:'Friday Health', numbers_of_claims_denied: 8, claim_balance: '$800'},
+            {payer:'Oscar Health', numbers_of_claims_denied: 14, claim_balance: '$1400'},
+            {payer:'Bind', numbers_of_claims_denied: 10, claim_balance: '$1000'},
+            {payer:'Sidecar Health', numbers_of_claims_denied: 12, claim_balance: '$1200'}
+        ]
+
+        let gridOptions_payer = {
+            columnDefs:columnDefs_payer, 
+            rowData:rowData_payer,
+            rowHeight:30,
+            rowSelection:"single"
+        }
+
+        const payerGrid =  document.querySelector("#payer");
+
+        new agGrid.Grid(payerGrid, gridOptions_payer);
+
+    </script>
+
+    <script>
+        const columnDefs = [
+        { field: 'id', checkboxSelection: true, width:40 },
+            { field: 'mr', headerName: 'MR#', width:40 },
+            { field: 'patientName', headerName: 'Patient Name', width:90 },
+            { field: 'claimId', headerName: 'Claim ID', width:60 },
+            { field: 'dos', headerName: 'DOS', width:70 },
+            { field: 'denialCode', headerName: 'Denial Code', width:50 },
+            { field: 'denyingPayer', headerName: 'Denying Payer', width:90 },
+            { field: 'payerSequence', headerName: 'Payer Sequence', width:90 },
+            { field: 'deniedAmount', headerName: 'Denied Amount', width:60 },
+            { field: 'balance', headerName: 'Balance', width:60 },
+            { 
+                field: 'status', 
+                headerName: 'Status', 
+                //  cellRenderer: statusCellRenderer, 
+                width:90,    
+                cellEditor: 'agSelectCellEditor',
+                cellEditorParams: {
+                values: ['New', 'Working', 'Ready to Resubmit', 'Resubmitted', 'Paid'] 
+                }
+            },
+            { field: 'statusDate', headerName: 'Status Date', width:70 },
+            { field: 'assignedTo', headerName: 'Assigned To' , width:90}
+        ];
+
+        function statusCellRenderer(params) {
+            const status = params.value;
+            const statusMap = {
+                'New': 'New',
+                'Working': 'Working',
+                'Ready to Resubmit': 'Ready to Resubmit',
+                'Resubmitted': 'Resubmitted',
+                'Paid': 'Paid'
+            };
+
+            const statusElement = document.createElement('div');
+            statusElement.classList.add('status-cell');
+            statusElement.textContent = statusMap[status];
+
+            // Add status icons (optional)
+            if (status === 'New') {
+                statusElement.innerHTML += `<svg width="7" height="5" viewBox="0 0 7 5" fill="none" xmlns="http://www.w3.org/2000/svg">
+<path d="M6.64979 9.23058e-07L0.34961 3.72279e-07C0.285824 0.000191102 0.2233 0.0169753 0.168769 0.0485462C0.114237 0.0801171 0.0697631 0.125278 0.0401334 0.17917C0.0105037 0.233062 -0.00315959 0.293644 0.000614572 0.354393C0.00438873 0.415142 0.0254568 0.47376 0.061552 0.523935L3.21164 4.86501C3.3422 5.045 3.6565 5.045 3.78741 4.86501L6.9375 0.523935C6.97396 0.473865 6.99534 0.415218 6.99932 0.354368C7.0033 0.293517 6.98972 0.23279 6.96007 0.178784C6.93041 0.124778 6.88581 0.0795579 6.83111 0.0480385C6.7764 0.0165186 6.71369 -9.53925e-05 6.64979 9.23058e-07Z" fill="#383838"/>
+</svg>
+`;
+            } else if (status === 'Working') {
+                statusElement.innerHTML += '<i class="fa fa-spinner fa-spin" aria-hidden="true"></i>';
+            } else if (status === 'Ready to Resubmit') {
+                statusElement.innerHTML += '<i class="fa fa-arrow-up" aria-hidden="true"></i>';
+            } else if (status === 'Resubmitted') {
+                statusElement.innerHTML += '<i class="fa fa-retweet" aria-hidden="true"></i>';
+            } else if (status === 'Paid') {
+                statusElement.innerHTML += '<i class="fa fa-check-circle" aria-hidden="true"></i>';
+            }
+               return statusElement;
+        }
+
+        const gridOptions = {
+            columnDefs: columnDefs,
+            rowData: [
+                // Sample data (replace with your actual data)
+                { mr: 23763, patientName: 'Andre Agassi', claimId: 123456, dos: '12/18/2024', denialCode: 'PI-95', denyingPayer: 'United Healthcare', payerSequence: 'Primary', deniedAmount: 94.55, balance: 94.55, status: 'New', statusDate: '12/18/2024', assignedTo: 'Emmy' },
+                { mr: 23764, patientName: 'Roger Federer', claimId: 876543, dos: '12/19/2024', denialCode: 'PI-95', denyingPayer: 'United Healthcare', payerSequence: 'Primary', deniedAmount: 94.55, balance: 94.55, status: 'New', statusDate: '12/19/2024', assignedTo: 'Emmy' },
+                { mr: 23765, patientName: 'Rafael Nadal', claimId: 654321, dos: '12/20/2024', denialCode: 'Co-45', denyingPayer: 'Medicare', payerSequence: 'Secondary', deniedAmount: 87.96, balance: 87.96, status: 'Working', statusDate: '12/20/2024', assignedTo: 'Garry' },
+                { mr: 23766, patientName: 'Serena Williams', claimId: 111111, dos: '12/21/2024', denialCode: 'CR-101', denyingPayer: 'Aetna', payerSequence: 'Primary', deniedAmount: 120.00, balance: 120.00, status: 'Ready to Resubmit', statusDate: '12/21/2024', assignedTo: 'Sarah' },
+                { mr: 23767, patientName: 'Maria Sharapova', claimId: 222222, dos: '12/22/2024', denialCode: 'PI-95', denyingPayer: 'United Healthcare', payerSequence: 'Primary', deniedAmount: 94.55, balance: 94.55, status: 'Resubmitted', statusDate: '12/22/2024', assignedTo: 'John' },
+                { mr: 23768, patientName: 'LeBron James', claimId: 333333, dos: '12/23/2024', denialCode: 'Co-45', denyingPayer: 'Medicare', payerSequence: 'Secondary', deniedAmount: 87.96, balance: 87.96, status: 'Paid', statusDate: '12/23/2024', assignedTo: 'Mike' },
+                { mr: 23769, patientName: 'Tom Brady', claimId: 444444, dos: '12/24/2024', denialCode: 'CR-101', denyingPayer: 'Aetna', payerSequence: 'Primary', deniedAmount: 120.00, balance: 120.00, status: 'New', statusDate: '12/24/2024', assignedTo: 'Emmy' },
+                { mr: 23770, patientName: 'Stephen Curry', claimId: 555555, dos: '12/25/2024', denialCode: 'PI-95', denyingPayer: 'United Healthcare', payerSequence: 'Primary', deniedAmount: 94.55, balance: 94.55, status: 'Working', statusDate: '12/25/2024', assignedTo: 'Garry' },
+                { mr: 23771, patientName: 'Saquon Barkley', claimId: 666666, dos: '12/26/2024', denialCode: 'Co-45', denyingPayer: 'Medicare', payerSequence: 'Secondary', deniedAmount: 87.96, balance: 87.96, status: 'Ready to Resubmit', statusDate: '12/26/2024', assignedTo: 'Sarah' },
+                { mr: 23772, patientName: 'Aaron Rodgers', claimId: 777777, dos: '12/27/2024', denialCode: 'CR-101', denyingPayer: 'Aetna', payerSequence: 'Primary', deniedAmount: 120.00, balance: 120.00, status: 'Resubmitted', statusDate: '12/27/2024', assignedTo: 'John' },
+                { mr: 23773, patientName: 'Giannis Antetokounmpo', claimId: 888888, dos: '12/28/2024', denialCode: 'PI-95', denyingPayer: 'United Healthcare', payerSequence: 'Primary', deniedAmount: 94.55, balance: 94.55, status: 'Paid', statusDate: '12/28/2024', assignedTo: 'Mike' },
+                { mr: 23774, patientName: 'Kevin Durant', claimId: 999999, dos: '12/29/2024', denialCode: 'Co-45', denyingPayer: 'Medicare', payerSequence: 'Secondary', deniedAmount: 87.96, balance: 87.96, status: 'New', statusDate: '12/29/2024', assignedTo: 'Emmy' },
+                { mr: 23775, patientName: 'Joel Embiid', claimId: 101010, dos: '12/30/2024', denialCode: 'CR-101', denyingPayer: 'Aetna', payerSequence: 'Primary', deniedAmount: 120.00, balance: 120.00, status: 'Working', statusDate: '12/30/2024', assignedTo: 'Garry' },
+                { mr: 23776, patientName: 'Damian Lillard', claimId: 111111, dos: '12/31/2024', denialCode: 'PI-95', denyingPayer: 'United Healthcare', payerSequence: 'Primary', deniedAmount: 94.55, balance: 94.55, status: 'Ready to Resubmit', statusDate: '12/31/2024', assignedTo: 'Sarah' },
+                { mr: 23777, patientName: 'James Harden', claimId: 222222, dos: '01/01/2025', denialCode: 'Co-45', denyingPayer: 'Medicare', payerSequence: 'Secondary', deniedAmount: 87.96, balance: 87.96, status: 'Resubmitted', statusDate: '01/01/2025', assignedTo: 'John' },
+                { mr: 23778, patientName: 'Russell Westbrook', claimId: 333333, dos: '01/02/2025', denialCode: 'CR-101', denyingPayer: 'Aetna', payerSequence: 'Primary', deniedAmount: 120.00, balance: 120.00, status: 'Paid', statusDate: '01/02/2025', assignedTo: 'Mike' },
+                { mr: 23779, patientName: 'Paul George', claimId: 444444, dos: '01/03/2025', denialCode: 'PI-95', denyingPayer: 'United Healthcare', payerSequence: 'Primary', deniedAmount: 94.55, balance: 94.55, status: 'New', statusDate: '01/03/2025', assignedTo: 'Emmy' },
+                { mr: 23780, patientName: 'Jayson Tatum', claimId: 555555, dos: '01/04/2025', denialCode: 'Co-45', denyingPayer: 'Medicare', payerSequence: 'Secondary', deniedAmount: 87.96, balance: 87.96, status: 'Working', statusDate: '01/04/2025', assignedTo: 'Garry' },
+                { mr: 23781, patientName: 'Bradley Beal', claimId: 666666, dos: '01/05/2025', denialCode: 'CR-101', denyingPayer: 'Aetna', payerSequence: 'Primary', deniedAmount: 120.00, balance: 120.00, status: 'Ready to Resubmit', statusDate: '01/05/2025', assignedTo: 'Sarah' },
+                { mr: 23782, patientName: 'Klay Thompson', claimId: 777777, dos: '01/06/2025', denialCode: 'PI-95', denyingPayer: 'United Healthcare', payerSequence: 'Primary', deniedAmount: 94.55, balance: 94.55, status: 'Resubmitted', statusDate: '01/06/2025', assignedTo: 'John' },
+                { mr: 23783, patientName: 'Draymond Green', claimId: 888888, dos: '01/07/2025', denialCode: 'Co-45', denyingPayer: 'Medicare', payerSequence: 'Secondary', deniedAmount: 87.96, balance: 87.96, status: 'Paid', statusDate: '01/07/2025', assignedTo: 'Mike' },
+                { mr: 23784, patientName: 'Kevin Love', claimId: 999999, dos: '01/08/2025', denialCode: 'CR-101', denyingPayer: 'Aetna', payerSequence: 'Primary', deniedAmount: 120.00, balance: 120.00, status: 'New', statusDate: '01/08/2025', assignedTo: 'Emmy' }
+                // ... other rows
+            ],
+            rowSelection: 'multiple', // Enable multiple row selection
+            suppressRowClickSelection: true, 
+            rowHeight:30,
+            onSelectionChanged: () => {
+                // Handle row selection events (optional)
+            }
+        };
+
+        // Create the grid
+        const gridDiv = document.querySelector('#denialsGrid');
+        new agGrid.Grid(gridDiv, gridOptions);
+    </script>
+
+
 </body>
-</html>
+</html> 
