@@ -77,7 +77,6 @@ html, body{
         border: 1px solid var(--border-color-gray);
         background-color: #fff;        
         font: inherit;
-        font-size: var(--f12px);
         cursor: pointer;
         font-weight: var(--fw500);
     }
@@ -86,7 +85,8 @@ html, body{
         border-color:var(--color-green);
         background-color: var(--color-green);
         color: #fff;
-       
+        font-size: var(--f12px);
+        
     }
 
     .bttn.secondary{
@@ -96,6 +96,8 @@ html, body{
 
     .bttn.resetall{
         color: var(--color-red);
+        font-size: var(--f12px);
+
     }
 
 
@@ -130,7 +132,7 @@ html, body{
 
     nav ul{
         display: flex;
-        justify-content: space-between;
+        justify-content:flex-start;
         background-color: white;
         border-radius: 0.3125rem;
         background: #FFF;
