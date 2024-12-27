@@ -2,6 +2,8 @@ html, body{
     margin:0;
     padding: 0;
 }
+
+
 #billing-tab{
 
     --bgcolor: #F6F7F8;
@@ -29,13 +31,13 @@ html, body{
 
     --radius-3px: 0.1875rem; /*3px*/
    
-    
+    -webkit-font-smoothing: antialiased;
 
     font-family: "Lexend", serif;
     font-optical-sizing: auto;    
     font-style: normal;
     font-size: var(--f10px); /* 10px */
-    font-weight: var(--fw500);
+    font-weight: var(--fw400);
     color: var(--textcolor);
     background-color: var(--bgcolor);
 
@@ -46,9 +48,11 @@ html, body{
     flex-direction: column;
     gap:0.38rem;
 
-    /* temporary */
-    max-width: 70vw;
-    margin-inline: auto;
+    /* temporary */    
+    margin-top: 120px;
+    
+
+   
 
     h2{
         font-size: var(--f16px); /*16px*/
@@ -68,7 +72,7 @@ html, body{
         box-shadow: 0px 4px 10px 0px rgba(116, 116, 117, 0.25);
     }
 
-    .hide{display: none;}
+    .hide{display: none !important;}
 
     .bttn{
         min-width: 6.5625rem;
@@ -97,7 +101,6 @@ html, body{
     .bttn.resetall{
         color: var(--color-red);
         font-size: var(--f12px);
-
     }
 
 
@@ -106,15 +109,16 @@ html, body{
         background-color: var(--bgcolor);
         height: 1.75rem;
         font:inherit;
-        font-size: var(--f12px);
+        font-size: var(--f11px);
         display: flex;
         align-items: center;
         justify-content: center;
         gap: 0.25rem;
-        padding-inline: var(--f12px);        
+        padding-inline: 6px;        
         cursor: pointer;
         border: none;
-        
+        appearance: none;
+        color: inherit;
         svg{
             fill: var(--textcolor);
         }
@@ -126,9 +130,7 @@ html, body{
         }
     }
 
-    button.filter{
-        anchor-name: --payer-filter;
-    }
+    
 
     nav ul{
         display: flex;
@@ -183,10 +185,7 @@ html, body{
     .grid-filter{
         border: 1px solid var(--border-color-gray);
         position: absolute;
-        inset:auto;
-        position-anchor: --payer-filter;
-        top: anchor(bottom);
-        right: anchor(right);
+        inset:auto;       
         padding:0rem;
         margin: 0;
         margin-right: -50px;
@@ -204,9 +203,26 @@ html, body{
             border-bottom: 1px solid var(--border-color-gray);
             h3{
                 margin: 0;
-                font-size: var(--f13px);                
+                font-size: var(--f13px); 
+                
             }
         }
+
+        .filterbody{
+            max-height: 400px;
+            overflow-y: auto;
+            overflow-x: hidden;
+        }
+
+        .filterbody::-webkit-scrollbar{
+            width: 5px;
+            background-color: #f0f0f0;
+          }   
+
+          .filterbody::-webkit-scrollbar-thumb{
+            width: 5px;
+            background-color: #C8DCF3;
+          }
 
         fieldset{
             border: 0;
@@ -218,6 +234,7 @@ html, body{
                 justify-content: space-between;
                 margin-bottom: 5px;
                 gap: 0.1875rem;
+              
                 .reset{
                     appearance: none;
                     border:none;
@@ -234,6 +251,7 @@ html, body{
                     input{
                         margin: 0;
                     }
+                    color: var(--color-gray);
                 }
 
                 label.col{
@@ -247,9 +265,15 @@ html, body{
                         border-radius: 3px;
                         color: var(--color-gray);
                     }
+
+                    input[type="date"]:focus{
+                        border-color: var(--color-sky-blue);
+                        outline: 0;
+                    }
                   
                 }
-    
+                
+               
 
 
             }
@@ -261,14 +285,152 @@ html, body{
                 padding: 0.5rem;
             }
 
+            .row.search{
+                border: 1px solid var(--border-color-gray);
+                border-radius: 0.1875rem;
+                padding: 0.5rem;
+                justify-content: flex-start;                
+                input{
+                    appearance: none;
+                    border: 0;
+                    font: inherit;                    
+                    font-size: var(--f10px);
+                    font-weight: 400;
+                }
+                input:focus{
+                    border: 0;
+                    outline: 0;
+                }
+                input::placeholder{
+                    color: var(--color-gray);                    
+                }              
+                &:focus-within{
+                    border-color: var(--color-sky-blue)
+                }
+            }
+
+            .row.select{
+
+                .multiselect-container {
+                    position: relative;
+                  }
+                .multiselect {                    
+                    border: 1px solid var(--border-color-gray);
+                    border-radius: 3px;
+                    padding: 5px;
+                    width: 190px;    
+                    display: flex; 
+                    justify-content: space-between;      
+                    align-items: center;
+                    padding-inline: 10px; 
+                    
+                    label{
+                        color: var(--color-gray);
+                    }
+                  }
+                
+                 .multiselect-selected {
+                    display: inline-block;
+                    margin-right: 5px;
+                    padding: 3px 5px;                    
+                    border-radius: 2px;                    
+                    cursor: pointer;
+                  }
+
+                  .multiselect-selected:hover {
+                    background-color: #ddd;
+                  }
+
+                  .multiselect-input {                    
+                    border: 1px solid var(--border-color-gray);
+                    border-radius: 3px;
+                    outline: none;
+                    padding: 5px;
+                    font:inherit;
+                    width: 188px;
+                }
+                
+                .multiselect-input::placeholder{
+                      color: var(--color-gray);
+
+                  }
+
+                  .multiselect-options {                   
+                    margin-top: 3px;
+                    max-height: 200px;
+                    overflow-y: auto;
+                    border: 1px solid var(--border-color-gray);                    
+                    border-radius: 3px;
+                    padding: 5px;
+                    z-index: 1;
+                    display: none;
+                    overflow-y: auto;
+                    overflow-x: hidden;
+                    color: var(--color-gray);
+                    width: 200px;
+                    
+                  }
+
+                  .multiselect-options::-webkit-scrollbar{
+                    width: 5px;
+                    background-color: #f0f0f0;
+                  }   
+
+                  .multiselect-options::-webkit-scrollbar-thumb{
+                    width: 5px;
+                    background-color: #C8DCF3;
+                  }
+
+                  .multiselect-option {
+                    padding: 1px;
+                    cursor: pointer;
+                    display: flex;
+                    align-items: center;
+                    gap: 0.2rem;
+                    input[type="checkbox"], input[type="radio"]{
+                        
+                        border: 1px solid #A0A0A0;
+                        width: 12px;
+                        height: 12px;
+                        border-radius: 2px;
+                    }
+                  }
+
+                 
+            }
+
+        }
+
+        fieldset.buttonRow{
+            border: 0;
+            margin: 0;
+            box-shadow: 0px -2px 2px rgba(0, 0, 0, 0.05);
         }
 
         fieldset:last-child{
-            border: 0;margin: 0;
+            border: 0;
         }
 
     }
-    .grid-filter:popover-open{
+    button.left-col-filter{
+        anchor-name: --payer-filter;
+    }
+    button.right-col-filter{
+        anchor-name: --denials-grid-filter;
+    }
+    .left-col-filter{
+        position-anchor: --payer-filter;
+        top: anchor(bottom);
+        right: anchor(right);
+    }
+
+    .right-col-filter{
+        position-anchor: --denials-grid-filter;
+        top: anchor(bottom);
+        left: anchor(left);
+    }
+    .left-col-filter:popover-open,
+    .right-col-filter:popover-open{
         display: grid;
         gap:0.3rem
     }
@@ -277,7 +439,9 @@ html, body{
     .billing-module-container{
         display: grid;
         grid-template-columns: 330px 1fr;
+        height: calc(100vh - 250px);
         gap: var(--f20px);
+     
 
         .billing-module-left-column, 
         .billing-module-right-column{
@@ -303,9 +467,12 @@ html, body{
             }           
         }
 
+        .billing-module-right-column-header h2 + svg {
+            margin-top:1px;
+        }
+
         .billing-module-left-column-body{
-            flex: 1 0 auto;
-            min-height: 60vh;
+            flex: 1 0 auto;            
             display: flex;
             flex-direction: column;
             gap: 0.9375rem;
@@ -332,9 +499,12 @@ html, body{
 
         }
 
+      
         .grid{
             width: 100%;
             height: 100%;
+            flex-grow: 1;
+            min-height: 0;
         }
 
 
@@ -401,6 +571,24 @@ html, body{
         }
 
         .billing-module-right-column{
+            position: relative;
+            
+            .no-data{
+                display: grid;
+                height: 100%;
+                place-content: center;
+                text-align: center;
+                gap: 0.9375rem;
+                h3{
+                    margin: 0;
+                    font-size: var(--f14px);
+                    color: var(--color-gray);
+                    font-weight: var(--fw400);
+                    opacity: 0.5;
+                }
+                
+            }
+            
             .btn-row{
                 display: flex;
                 gap:0.31rem
@@ -411,6 +599,7 @@ html, body{
                 gap: 1rem;
                 font-size: var(--f11px);
                 align-items: center;
+                margin-bottom: 50px;
                 .pagination{
                     margin-left: auto;
                     display: flex;
@@ -430,6 +619,11 @@ html, body{
                         cursor: pointer;
                     }
                 }
+            }
+
+            .floating-button-row{
+                position:absolute;
+                bottom:20px
             }
         }
 
