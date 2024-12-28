@@ -762,6 +762,7 @@ html, body{
             th, td{
                 padding: 2px 5px;
                 border-right: 1px solid var(--border-color-gray);
+                
             }
 
             td p{
@@ -785,6 +786,14 @@ html, body{
                 cursor: pointer;
             }
 
+            .claim-history td
+            {
+                text-align: center;
+            }
+
+            .comments td:nth-child(2){
+                text-align: center;
+            }
         }
 
         .denials-details-column.active{
