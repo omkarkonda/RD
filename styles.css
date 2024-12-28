@@ -33,6 +33,22 @@ html, body{
    
     -webkit-font-smoothing: antialiased;
 
+
+    /* HTML Datepicker styles  */
+    input[type="date"]{
+        font: inherit;
+        text-transform: uppercase;
+    }
+    input[type="date"]::-webkit-calendar-picker-indicator {
+        width: 12px;
+        height: 12px;
+        background-image: url("data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTIiIGhlaWdodD0iMTIiIHZpZXdCb3g9IjAgMCAxMiAxMiIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEwLjQ4MjUgMC45NjA5OThIOS40MzI5NVYwLjU4MTY1NkM5LjQzMjk1IDAuMjY1NTM5IDkuMTY3NDEgMCA4Ljg1MTI5IDBIOC40MzQwMkM4LjExNzkgMCA3Ljg1MjM2IDAuMjY1NTM5IDcuODUyMzYgMC41ODE2NTZWMC45NjA5OThINC4xNDc0NlYwLjU4MTY1NkM0LjE0NzQ2IDAuMjY1NTM5IDMuODgxOTMgMCAzLjU2NTgxIDBIMy4xNDg1M0MyLjgzMjQxIDAgMi41NjY4OCAwLjI2NTUzOSAyLjU2Njg4IDAuNTgxNjU2VjAuOTYwOTk4SDEuNTMwMDFDMC42ODI4MTQgMC45NjA5OTggMCAxLjY0MzgxIDAgMi40OTEwMVY5LjUzNDExQzAgMTAuMzgxMyAwLjY4MjgxNCAxMS4wNjQxIDEuNTMwMDEgMTEuMDY0MUg5LjIxNzk5QzkuNDgzNTMgMTEuMDY0MSA5LjczNjQyIDEwLjk2MyA5LjkyNjEgMTAuNzczM0wxMS43MDkgOC45OTAzOUMxMS44OTg3IDguODAwNzIgMTEuOTk5OCA4LjU0NzgyIDExLjk5OTggOC4yODIyOFYyLjQ5MTAxQzEyLjAxMjUgMS42NDM4MSAxMS4zMjk3IDAuOTYwOTk4IDEwLjQ4MjUgMC45NjA5OThaTTEuNTMwMDEgMS45MDkzNUgxMC40ODI1QzEwLjc5ODYgMS45MDkzNSAxMS4wNjQxIDIuMTc0ODkgMTEuMDY0MSAyLjQ5MTAxVjMuMjg3NjJIMC45NDgzNTNWMi40OTEwMUMwLjk0ODM1MyAyLjE2MjI1IDEuMjEzODkgMS45MDkzNSAxLjUzMDAxIDEuOTA5MzVaTTAuOTQ4MzUzIDkuNTM0MTFWNC4yMjMzM0gxMS4wNjQxVjcuNTIzNkg5LjQ4MzUzQzguOTI3MTYgNy41MjM2IDguNDcxOTUgNy45Nzg4MSA4LjQ3MTk1IDguNTM1MThWMTAuMTE1OEgxLjUxNzM2QzEuMjEzODkgMTAuMTAzMSAwLjk0ODM1MyA5Ljg1MDIzIDAuOTQ4MzUzIDkuNTM0MTFaTTkuNDIwMzEgOS45MTM0NVY4LjUzNTE4QzkuNDIwMzEgOC40OTcyNCA5LjQ0NTYgOC40NzE5NSA5LjQ4MzUzIDguNDcxOTVIMTAuODc0NEw5LjQyMDMxIDkuOTEzNDVaIiBmaWxsPSIjQTBBMEEwIi8+CjxwYXRoIGQ9Ik0yLjY1NTUyIDYuNTk4NjRDMy4wMjU2NSA2LjU5ODY0IDMuMzI1NjkgNi4yOTg1OSAzLjMyNTY5IDUuOTI4NDdDMy4zMjU2OSA1LjU1ODM1IDMuMDI1NjUgNS4yNTgzIDIuNjU1NTIgNS4yNTgzQzIuMjg1NCA1LjI1ODMgMS45ODUzNSA1LjU1ODM1IDEuOTg1MzUgNS45Mjg0N0MxLjk4NTM1IDYuMjk4NTkgMi4yODU0IDYuNTk4NjQgMi42NTU1MiA2LjU5ODY0WiIgZmlsbD0iI0EwQTBBMCIvPgo8cGF0aCBkPSJNNC44ODExMSA2LjU5ODY0QzUuMjUxMjMgNi41OTg2NCA1LjU1MTI4IDYuMjk4NTkgNS41NTEyOCA1LjkyODQ3QzUuNTUxMjggNS41NTgzNSA1LjI1MTIzIDUuMjU4MyA0Ljg4MTExIDUuMjU4M0M0LjUxMDk4IDUuMjU4MyA0LjIxMDk0IDUuNTU4MzUgNC4yMTA5NCA1LjkyODQ3QzQuMjEwOTQgNi4yOTg1OSA0LjUxMDk4IDYuNTk4NjQgNC44ODExMSA2LjU5ODY0WiIgZmlsbD0iI0EwQTBBMCIvPgo8cGF0aCBkPSJNNy4xMDY2OSA2LjU5ODY0QzcuNDc2ODIgNi41OTg2NCA3Ljc3Njg2IDYuMjk4NTkgNy43NzY4NiA1LjkyODQ3QzcuNzc2ODYgNS41NTgzNSA3LjQ3NjgyIDUuMjU4MyA3LjEwNjY5IDUuMjU4M0M2LjczNjU3IDUuMjU4MyA2LjQzNjUyIDUuNTU4MzUgNi40MzY1MiA1LjkyODQ3QzYuNDM2NTIgNi4yOTg1OSA2LjczNjU3IDYuNTk4NjQgNy4xMDY2OSA2LjU5ODY0WiIgZmlsbD0iI0EwQTBBMCIvPgo8cGF0aCBkPSJNOS4zMzIyOCA2LjU5ODY0QzkuNzAyNCA2LjU5ODY0IDEwLjAwMjQgNi4yOTg1OSAxMC4wMDI0IDUuOTI4NDdDMTAuMDAyNCA1LjU1ODM1IDkuNzAyNCA1LjI1ODMgOS4zMzIyOCA1LjI1ODNDOC45NjIxNSA1LjI1ODMgOC42NjIxMSA1LjU1ODM1IDguNjYyMTEgNS45Mjg0N0M4LjY2MjExIDYuMjk4NTkgOC45NjIxNSA2LjU5ODY0IDkuMzMyMjggNi41OTg2NFoiIGZpbGw9IiNBMEEwQTAiLz4KPHBhdGggZD0iTTIuNjU1NTIgOC45OTAxMkMzLjAyNTY1IDguOTkwMTIgMy4zMjU2OSA4LjY5MDA3IDMuMzI1NjkgOC4zMTk5NUMzLjMyNTY5IDcuOTQ5ODIgMy4wMjU2NSA3LjY0OTc4IDIuNjU1NTIgNy42NDk3OEMyLjI4NTQgNy42NDk3OCAxLjk4NTM1IDcuOTQ5ODIgMS45ODUzNSA4LjMxOTk1QzEuOTg1MzUgOC42OTAwNyAyLjI4NTQgOC45OTAxMiAyLjY1NTUyIDguOTkwMTJaIiBmaWxsPSIjQTBBMEEwIi8+CjxwYXRoIGQ9Ik00Ljg4MTExIDguOTkwMTJDNS4yNTEyMyA4Ljk5MDEyIDUuNTUxMjggOC42OTAwNyA1LjU1MTI4IDguMzE5OTVDNS41NTEyOCA3Ljk0OTgyIDUuMjUxMjMgNy42NDk3OCA0Ljg4MTExIDcuNjQ5NzhDNC41MTA5OCA3LjY0OTc4IDQuMjEwOTQgNy45NDk4MiA0LjIxMDk0IDguMzE5OTVDNC4yMTA5NCA4LjY5MDA3IDQuNTEwOTggOC45OTAxMiA0Ljg4MTExIDguOTkwMTJaIiBmaWxsPSIjQTBBMEEwIi8+CjxwYXRoIGQ9Ik03LjEwNjY5IDguOTkwMTJDNy40NzY4MiA4Ljk5MDEyIDcuNzc2ODYgOC42OTAwNyA3Ljc3Njg2IDguMzE5OTVDNy43NzY4NiA3Ljk0OTgyIDcuNDc2ODIgNy42NDk3OCA3LjEwNjY5IDcuNjQ5NzhDNi43MzY1NyA3LjY0OTc4IDYuNDM2NTIgNy45NDk4MiA2LjQzNjUyIDguMzE5OTVDNi40MzY1MiA4LjY5MDA3IDYuNzM2NTcgOC45OTAxMiA3LjEwNjY5IDguOTkwMTJaIiBmaWxsPSIjQTBBMEEwIi8+Cjwvc3ZnPgo=");
+        
+    }
+      
+      
+
+
     font-family: "Lexend", serif;
     font-optical-sizing: auto;    
     font-style: normal;
@@ -130,6 +146,15 @@ html, body{
         }
     }
 
+    button.icon.nobg{
+        background-color: transparent;
+    }
+
+    button.icon.comment{
+        color: var(--color-blue);
+    }
+
+
     
 
     nav ul{
@@ -203,8 +228,14 @@ html, body{
             border-bottom: 1px solid var(--border-color-gray);
             h3{
                 margin: 0;
-                font-size: var(--f13px); 
-                
+                font-size: var(--f13px);                 
+            }
+
+            button{
+                appearance: none;
+                border: none;
+                background-color: transparent;
+                cursor: pointer;
             }
         }
 
@@ -241,6 +272,7 @@ html, body{
                     background-color: transparent;
                     color: var(--color-red);
                     font-size: var(--f10px);
+                    cursor: pointer;
                 }
 
                 label{
@@ -283,6 +315,19 @@ html, body{
                 border: 1px solid var(--border-color-gray);
                 border-radius: 0.1875rem;
                 padding: 0.5rem;
+                label{
+                    padding: 0.3rem;
+                    margin: 0;
+                    border-radius: 3px;
+                    cursor: pointer;
+                }
+                label:hover{
+                    background-color: #F1F5F8;
+                }
+            }
+
+            .row.v:focus-within{
+                border-color: var(--color-sky-blue)
             }
 
             .row.search{
@@ -395,7 +440,6 @@ html, body{
                         border-radius: 2px;
                     }
                   }
-
                  
             }
 
@@ -435,6 +479,10 @@ html, body{
         gap:0.3rem
     }
 
+    [popover]::backdrop{
+        
+        background-color: rgba(0, 0, 0, 0.1);
+    }
 
     .billing-module-container{
         display: grid;
@@ -443,8 +491,8 @@ html, body{
         gap: var(--f20px);
      
 
-        .billing-module-left-column, 
-        .billing-module-right-column{
+        .column
+        {
             border-radius: var(--f10px);
             background-color: white;
             border: 1px solid var(--border-color-gray);
@@ -452,23 +500,63 @@ html, body{
             display: flex;
             flex-direction: column;
             gap: var(--f16px);
-        }
 
-        .billing-module-left-column-header, 
-        .billing-module-right-column-header{
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 0.31rem;
+            .header{
+                position: relative;
+                display: flex;
+                justify-content: flex-start;
+                align-items: center;
+                gap: 0.31rem;
+            }
+
             h2{
                 margin: 0 ;
                 margin-right: auto;
                 color: var(--textcolor);
-            }           
+            }
         }
 
-        .billing-module-right-column-header h2 + svg {
-            margin-top:1px;
+        
+        .billing-module-right-column-header{
+                    
+            button.open svg{
+                rect{
+                    fill: var(--color-green);
+                }
+            }
+
+            menu{
+                margin: 0;                
+                list-style: none;
+                position: absolute;
+                left:170px;
+                top: 30px;
+                z-index: 2;
+                background-color: white;
+                border: 1px solid var(--border-color-gray);
+                border-radius: var(--f10px);
+                box-shadow: 0px 4px 10px 0px rgba(116, 116, 117, 0.25);
+                padding: 1rem;
+                display: flex;
+                flex-direction: column;
+                gap: 0.5rem;
+
+                li{
+                    font-size: var(--f12px);                    
+                    &:hover{
+                        color: var(--color-green);
+                        cursor: pointer;
+                    }
+                }
+            }
+            
+        }
+
+        .billing-module-right-column-header h2 + button {
+            background-color: transparent;
+            svg{
+                margin-top: 1px;
+            }
         }
 
         .billing-module-left-column-body{
@@ -599,7 +687,7 @@ html, body{
                 gap: 1rem;
                 font-size: var(--f11px);
                 align-items: center;
-                margin-bottom: 50px;
+                
                 .pagination{
                     margin-left: auto;
                     display: flex;
@@ -621,10 +709,97 @@ html, body{
                 }
             }
 
-            .floating-button-row{
+            /* .floating-button-row{
                 position:absolute;
                 bottom:20px
+            } */
+        }
+
+        .denials-details-column{
+            
+            overflow-y: auto;
+            overflow-x: hidden;
+            position: absolute;
+            box-sizing: border-box;
+            transform: translateX(-110%);
+            
+            h2:first-child{
+                margin-top: 0;
             }
+            h2{
+                margin-top: 0.5rem;
+                margin-bottom: 0.2rem;
+            }
+        
+            a{
+                color: var(--color-sky-blue);
+            }
+            table{               
+                border-collapse: separate;
+                border-spacing: 0; /* Ensures no extra spacing */
+                border-radius: 3px; /* Applies rounded corners */
+                overflow: hidden; /* Clips content to the rounded corners */
+                
+                border: 1px solid var(--border-color-gray);                                                                
+            }
+
+            table+table{
+                margin-top:0.9rem
+            }
+
+            thead{
+                
+                color: white;
+                th{
+                    font-weight: normal;
+                    background-color: var(--color-blue);
+                }
+            }
+            tbody tr:nth-child(even){
+                background-color: #F1F5F8;
+            }
+
+            th, td{
+                padding: 2px 5px;
+                border-right: 1px solid var(--border-color-gray);
+            }
+
+            td p{
+                margin: 0;
+                padding: 0.3rem;
+            }
+
+            td:first-child{
+                text-align: center;
+            }
+
+            th:last-child, 
+            td:last-child{
+                border-right: none;
+            }
+
+            button.details-close-btn{
+                position: absolute;
+                right:10px;
+                top:5px;
+                cursor: pointer;
+            }
+
+        }
+
+        .denials-details-column.active{
+            transform: translateX(0%);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .denials-details-column::-webkit-scrollbar{
+            width: 5px;
+            background-color: #f0f0f0;
+        }
+
+        .denials-details-column::-webkit-scrollbar-thumb{
+            background-color: #C8DCF3;
+            border-radius: 4px;
         }
 
     }
