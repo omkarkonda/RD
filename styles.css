@@ -52,7 +52,8 @@ html, body{
     font-family: "Lexend", serif;
     font-optical-sizing: auto;    
     font-style: normal;
-    font-size: var(--f10px); /* 10px */
+    /* font-size: var(--f10px);  */
+    font-size: var(--f11px); 
     font-weight: var(--fw400);
     color: var(--textcolor);
     background-color: var(--bgcolor);
@@ -489,7 +490,6 @@ html, body{
         grid-template-columns: 330px 1fr;
         height: calc(100vh - 250px);
         gap: var(--f20px);
-     
 
         .column
         {
