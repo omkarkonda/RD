@@ -10,16 +10,11 @@
     <link href="https://fonts.googleapis.com/css2?family=Lexend:wght@100..900&display=swap" rel="stylesheet">
 
     <!-- anchor position polyfill -->
-    <script type="module">
+    <!-- <script type="module">
         if (!("anchorName" in document.documentElement.style)) {
-          window.ANCHOR_POSITIONING_POLYFILL_OPTIONS = {
-            elements: undefined,
-            excludeInlineStyles: false,
-            useAnimationFrame: false,
-          };
-          import("https://unpkg.com/@oddbird/css-anchor-positioning");
+          import("https://unpkg.com/@oddbird/css-anchor-positioning@0.4.0/dist/css-anchor-positioning.js");
         }
-      </script>
+      </script> -->
 
     <!-- agGrid -->    
     <script src="https://cdn.jsdelivr.net/npm/ag-grid-community@23.0.2/dist/ag-grid-community.min.noStyle.min.js"></script>
@@ -49,14 +44,15 @@
             <li class="">Rejections</li>
             <li class="active">Denials</li>
         </ul>
-        
+
+        <!-- Rejections -->
         <section id="rejections" class="hide">
             Rejections
         </section>
 
+        <!-- Denials -->
         <section id="denials" class="billing-module-container">
-            <!-- Left Column -->
-             
+            <!-- Left Column -->             
             <div id="denial-stats" class="billing-module-left-column column ">
                 <div class="billing-module-left-column-header header">
                     <h2>Denial Statistics</h2>
@@ -93,180 +89,180 @@
                 </div>    
             </div>
 
+            <!-- sliding column  -->
             <div id="denial-details" class="denials-details-column column hide" >                
-                    <button class="icon nobg details-close-btn">
-                        <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path d="M3.05011 3.04999C3.23764 2.86252 3.49195 2.7572 3.75711 2.7572C4.02227 2.7572 4.27658 2.86252 4.46411 3.04999L8.00011 6.58599L11.5361 3.04999C11.7247 2.86783 11.9773 2.76704 12.2395 2.76931C12.5017 2.77159 12.7525 2.87676 12.9379 3.06217C13.1233 3.24758 13.2285 3.49839 13.2308 3.76059C13.2331 4.02278 13.1323 4.27539 12.9501 4.46399L9.41411 7.99999L12.9501 11.536C13.1323 11.7246 13.2331 11.9772 13.2308 12.2394C13.2285 12.5016 13.1233 12.7524 12.9379 12.9378C12.7525 13.1232 12.5017 13.2284 12.2395 13.2307C11.9773 13.2329 11.7247 13.1321 11.5361 12.95L8.00011 9.41399L4.46411 12.95C4.27551 13.1321 4.02291 13.2329 3.76071 13.2307C3.49851 13.2284 3.2477 13.1232 3.06229 12.9378C2.87688 12.7524 2.77172 12.5016 2.76944 12.2394C2.76716 11.9772 2.86795 11.7246 3.05011 11.536L6.58611 7.99999L3.05011 4.46399C2.86264 4.27646 2.75732 4.02215 2.75732 3.75699C2.75732 3.49182 2.86264 3.23752 3.05011 3.04999Z" fill="#383838"/>
-                        </svg>                            
-                    </button>
-                    <div class="denial-details">
-                        <h2>Denial Details</h2>
-                        <table>
-                            <thead>
+                <button class="icon nobg details-close-btn">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M3.05011 3.04999C3.23764 2.86252 3.49195 2.7572 3.75711 2.7572C4.02227 2.7572 4.27658 2.86252 4.46411 3.04999L8.00011 6.58599L11.5361 3.04999C11.7247 2.86783 11.9773 2.76704 12.2395 2.76931C12.5017 2.77159 12.7525 2.87676 12.9379 3.06217C13.1233 3.24758 13.2285 3.49839 13.2308 3.76059C13.2331 4.02278 13.1323 4.27539 12.9501 4.46399L9.41411 7.99999L12.9501 11.536C13.1323 11.7246 13.2331 11.9772 13.2308 12.2394C13.2285 12.5016 13.1233 12.7524 12.9379 12.9378C12.7525 13.1232 12.5017 13.2284 12.2395 13.2307C11.9773 13.2329 11.7247 13.1321 11.5361 12.95L8.00011 9.41399L4.46411 12.95C4.27551 13.1321 4.02291 13.2329 3.76071 13.2307C3.49851 13.2284 3.2477 13.1232 3.06229 12.9378C2.87688 12.7524 2.77172 12.5016 2.76944 12.2394C2.76716 11.9772 2.86795 11.7246 3.05011 11.536L6.58611 7.99999L3.05011 4.46399C2.86264 4.27646 2.75732 4.02215 2.75732 3.75699C2.75732 3.49182 2.86264 3.23752 3.05011 3.04999Z" fill="#383838"/>
+                    </svg>                            
+                </button>
+                <div class="denial-details">
+                    <h2>Denial Details</h2>
+                    <table>
+                        <thead>
+                        <tr>
+                            <th>Denial code</th>
+                            <th>Description</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>CO-45</td>
+                            <td><p>Charge exceeds fee schedule/maximum allowable or contracted fee arrangement</p></td>
+                        </tr>
+                        <tr>
+                            <td>CO-27</td>
+                            <td><p>Expenses incurred after coverage terminated</p></td>
+                        </tr>
+                    </tbody>
+                    </table>
+
+                    <table>
+                        <thead>
                             <tr>
-                                <th>Denial code</th>
+                                <th>Remark code</th>
                                 <th>Description</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>CO-45</td>
-                                <td><p>Charge exceeds fee schedule/maximum allowable or contracted fee arrangement</p></td>
+                                <td>N95</td>
+                                <td><p>Provider not certified/eligible for payment for this service on this date</p></td>
                             </tr>
                             <tr>
-                                <td>CO-27</td>
-                                <td><p>Expenses incurred after coverage terminated</p></td>
+                                <td>MA15</td>
+                                <td><p>Missing or incomplete/invalid patient identifier</p></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="insurance">
+                    <h2>Insurance Details</h2>
+                    <ul>
+                        <li>Ins 1: Aetna</li>
+                        <li>Status: Claim Sent, Accepted, Processed as Primary, Paid $65</li>
+                        <li>Ins 1 Policy #: GY963234 </li>
+                        <li>Check Date (Number): 12/8/24 <a href="#"> (11935613) </a></li>
+                        <li>Check Date (Number): 12/12/24 <a href="#">  (2932562) </a></li>                            
+                    </ul> 
+
+                    <ul>
+                        <li>Ins 2: Signa</li>
+                        <li>Status: Claim Sent, Accepted, Processed as Primary, Paid $0</li>
+                        <li>Ins 2 Policy #: 768769868</li>
+                        <li>Check Date (Number): 12/8/24 <a href="#"> (176876876)  </a></li>
+                        
+                    </ul> 
+
+                </div>
+                <div class="claim">
+                    <h2>Claim Details</h2>
+                    <ul>
+                        <li>CPT/HPCS Code: </li>
+                        <li>Modifier: </li>
+                        <li>Units: </li>
+                        <li>Facility/Location: </li>
+                        <li>Provider: </li>
+                        <li>Billed Amount: </li>
+                        <li>Allowed Amount: </li>
+                        <li>Denied Amount: </li>
+                        <li>Balance: </li>
+                    </ul>
+                </div>
+                <div class="claim-history">
+                    <h2>Claim History</h2>
+                    <table>
+
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Event</th>
+                                <th>Payer Sequence</th>
+                                <th>Zero Paid</th>
+                                <th>User</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>12/06/24</td>
+                                <td>Claim Created</td>
+                                <td>Primary</td>
+                                <td></td>
+                                <td>Andre Agassi</td>
+                            </tr>
+                            <tr>
+                                <td>12/06/24</td>
+                                <td>Processed as Primary</td>
+                                <td>Secondary</td>
+                                <td></td>
+                                <td>Novak Djokovic</td>
+                            </tr>
+                            <tr>
+                                <td>12/06/24</td>
+                                <td>Ins 1 Resent</td>
+                                <td>Primary</td>
+                                <td></td>
+                                <td>Pete Sampras</td>
+                            </tr>
+                            <tr>
+                                <td>12/06/24</td>
+                                <td>Claim Created</td>
+                                <td>Primary</td>
+                                <td>Yes</td>
+                                <td>System</td>
+                            </tr>
+                            <tr>
+                                <td>12/06/24</td>
+                                <td>Processed as Secondary</td>
+                                <td>Primary</td>
+                                <td></td>
+                                <td>David Beckham</td>
+                            </tr>
+                            <tr>
+                                <td>12/06/24</td>
+                                <td>Ins 1 Resent</td>
+                                <td>Primary</td>
+                                <td>No</td>
+                                <td>Tom Brady</td>
+                            </tr>
+                            <tr>
+                                <td>12/06/24</td>
+                                <td>Ins 2 First Sent</td>
+                                <td>Secondary</td>
+                                <td>Yes</td>
+                                <td>Andre Agassi</td>
+                            </tr>
+                        </tbody>
+                        </table>           
+                </div>
+                <div class="comments">
+                    <h2>Comments</h2>
+                    <table>
+                        <thead>
+                            <tr>
+                            <th>Date</th>
+                            <th>User</th>
+                            <th>Comment</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                            <td>12/09/2023</td>
+                            <td>Carrie Davidson</td>
+                            <td><p>New policy number needed from patient</p></td>
+                            </tr>
+                            <tr>
+                            <td>12/09/2023</td>
+                            <td>Anna Smith</td>
+                            <td><p>Provider not credentialed</p></td>
                             </tr>
                         </tbody>
                         </table>
-
-                        <table>
-                            <thead>
-                                <tr>
-                                    <th>Remark code</th>
-                                    <th>Description</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>N95</td>
-                                    <td><p>Provider not certified/eligible for payment for this service on this date</p></td>
-                                </tr>
-                                <tr>
-                                    <td>MA15</td>
-                                    <td><p>Missing or incomplete/invalid patient identifier</p></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="insurance">
-                        <h2>Insurance Details</h2>
-                        <ul>
-                            <li>Ins 1: Aetna</li>
-                            <li>Status: Claim Sent, Accepted, Processed as Primary, Paid $65</li>
-                            <li>Ins 1 Policy #: GY963234 </li>
-                            <li>Check Date (Number): 12/8/24 <a href="#"> (11935613) </a></li>
-                            <li>Check Date (Number): 12/12/24 <a href="#">  (2932562) </a></li>                            
-                        </ul> 
-
-                        <ul>
-                            <li>Ins 2: Signa</li>
-                            <li>Status: Claim Sent, Accepted, Processed as Primary, Paid $0</li>
-                            <li>Ins 2 Policy #: 768769868</li>
-                            <li>Check Date (Number): 12/8/24 <a href="#"> (176876876)  </a></li>
-                            
-                        </ul> 
-
-                    </div>
-                    <div class="claim">
-                        <h2>Claim Details</h2>
-                        <ul>
-                            <li>CPT/HPCS Code: </li>
-                            <li>Modifier: </li>
-                            <li>Units: </li>
-                            <li>Facility/Location: </li>
-                            <li>Provider: </li>
-                            <li>Billed Amount: </li>
-                            <li>Allowed Amount: </li>
-                            <li>Denied Amount: </li>
-                            <li>Balance: </li>
-                        </ul>
-                    </div>
-                    <div class="claim-history">
-                        <h2>Claim History</h2>
-                        <table>
-
-                            <thead>
-                                <tr>
-                                  <th>Date</th>
-                                  <th>Event</th>
-                                  <th>Payer Sequence</th>
-                                  <th>Zero Paid</th>
-                                  <th>User</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                  <td>12/06/24</td>
-                                  <td>Claim Created</td>
-                                  <td>Primary</td>
-                                  <td></td>
-                                  <td>Andre Agassi</td>
-                                </tr>
-                                <tr>
-                                  <td>12/06/24</td>
-                                  <td>Processed as Primary</td>
-                                  <td>Secondary</td>
-                                  <td></td>
-                                  <td>Novak Djokovic</td>
-                                </tr>
-                                <tr>
-                                  <td>12/06/24</td>
-                                  <td>Ins 1 Resent</td>
-                                  <td>Primary</td>
-                                  <td></td>
-                                  <td>Pete Sampras</td>
-                                </tr>
-                                <tr>
-                                  <td>12/06/24</td>
-                                  <td>Claim Created</td>
-                                  <td>Primary</td>
-                                  <td>Yes</td>
-                                  <td>System</td>
-                                </tr>
-                                <tr>
-                                  <td>12/06/24</td>
-                                  <td>Processed as Secondary</td>
-                                  <td>Primary</td>
-                                  <td></td>
-                                  <td>David Beckham</td>
-                                </tr>
-                                <tr>
-                                  <td>12/06/24</td>
-                                  <td>Ins 1 Resent</td>
-                                  <td>Primary</td>
-                                  <td>No</td>
-                                  <td>Tom Brady</td>
-                                </tr>
-                                <tr>
-                                  <td>12/06/24</td>
-                                  <td>Ins 2 First Sent</td>
-                                  <td>Secondary</td>
-                                  <td>Yes</td>
-                                  <td>Andre Agassi</td>
-                                </tr>
-                            </tbody>
-                          </table>           
-                    </div>
-                    <div class="comments">
-                        <h2>Comments</h2>
-                        <table>
-                            <thead>
-                              <tr>
-                                <th>Date</th>
-                                <th>User</th>
-                                <th>Comment</th>
-                              </tr>
-                            </thead>
-                            <tbody>
-                              <tr>
-                                <td>12/09/2023</td>
-                                <td>Carrie Davidson</td>
-                                <td><p>New policy number needed from patient</p></td>
-                              </tr>
-                              <tr>
-                                <td>12/09/2023</td>
-                                <td>Anna Smith</td>
-                                <td><p>Provider not credentialed</p></td>
-                              </tr>
-                            </tbody>
-                          </table>
-                          <button class="icon nobg comment"> <svg width="9" height="9" viewBox="0 0 9 9" fill="none" xmlns="http://www.w3.org/2000/svg">
-                            <path fill-rule="evenodd" clip-rule="evenodd" d="M4 4H0.5C0.224 4 0 4.224 0 4.5C0 4.776 0.224 5 0.5 5H4V8.5C4 8.776 4.224 9 4.5 9C4.776 9 5 8.776 5 8.5V5H8.5C8.776 5 9 4.776 9 4.5C9 4.224 8.776 4 8.5 4H5V0.5C5 0.224 4.776 0 4.5 0C4.224 0 4 0.224 4 0.5V4Z" fill="#0A5BB8"/>
-                            </svg>
-                             <span>Add Comment </span> </button>
-                    </div>
-             
+                        <button class="icon nobg comment"> <svg width="9" height="9" viewBox="0 0 9 9" fill="none" xmlns="http://www.w3.org/2000/svg">
+                        <path fill-rule="evenodd" clip-rule="evenodd" d="M4 4H0.5C0.224 4 0 4.224 0 4.5C0 4.776 0.224 5 0.5 5H4V8.5C4 8.776 4.224 9 4.5 9C4.776 9 5 8.776 5 8.5V5H8.5C8.776 5 9 4.776 9 4.5C9 4.224 8.776 4 8.5 4H5V0.5C5 0.224 4.776 0 4.5 0C4.224 0 4 0.224 4 0.5V4Z" fill="#0A5BB8"/>
+                        </svg>
+                            <span>Add Comment </span> </button>
+                </div>             
             </div>
 
             <!-- Right Column -->
@@ -276,18 +272,243 @@
                 <div class="billing-module-right-column-header header">
                     <h2>Denials & Zero Paids</h2>
                    
-                    <button class="icon" id="settings-btn">
+                    <button id="settings-btn" class="icon settings-anchor">
                         <svg width="16" height="10" viewBox="0 0 16 10" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <rect width="16" height="2" rx="1" fill="#383838"/>
                             <rect y="4" width="16" height="2" rx="1" fill="#383838"/>
                             <rect y="8" width="16" height="2" rx="1" fill="#383838"/>
                         </svg>
                     </button>
+
+                    
                     <menu id="settings-menu" style="display: none;">
-                        <li>Column Customization Settings</li>
-                        <li>Filter Customization Settings</li>
-                        <li>Task Assignment Settings</li>                       
-                    </menu>                        
+                        <li>
+                            <button id="column-customization-btn" popovertarget="column-customization-dialog">Column Customization Settings</button> 
+                        </li>
+                        <li>
+                            <button id="filter-customization-btn" popovertarget="filter-customization-dialog">Filter Customization Settings</button>
+                        </li>
+                        <li>
+                            <button id="task-assignment-btn">Task Assignment Settings</button>
+                        </li>                       
+                    </menu> 
+
+                    <dialog id="column-customization-dialog" popover >
+                        <div class="dialog-header">
+                            <h2>Column Customization Settings</h2>
+                            <button class="icon nobg" id="column-customization-close-dialog"  popoveraction="close" popovertarget="column-customization-dialog">
+                                <svg width="9" height="8" viewBox="0 0 9 8" fill="none">
+                                    <path d="M0.898086 0.22364C1.03797 0.0804433 1.22766 0 1.42546 0C1.62325 0 1.81295 0.0804433 1.95283 0.22364L4.59044 2.92455L7.22805 0.22364C7.36873 0.0845015 7.55716 0.0075115 7.75274 0.00925183C7.94832 0.0109922 8.13541 0.0913237 8.27371 0.232944C8.41201 0.374565 8.49046 0.566144 8.49216 0.766418C8.49386 0.966693 8.41867 1.15964 8.2828 1.3037L5.64519 4.00461L8.2828 6.70552C8.41867 6.84958 8.49386 7.04253 8.49216 7.2428C8.49046 7.44308 8.41201 7.63466 8.27371 7.77628C8.13541 7.9179 7.94832 7.99823 7.75274 7.99997C7.55716 8.00171 7.36873 7.92472 7.22805 7.78558L4.59044 5.08467L1.95283 7.78558C1.81215 7.92472 1.62372 8.00171 1.42814 7.99997C1.23256 7.99823 1.04547 7.9179 0.907172 7.77628C0.768871 7.63466 0.690422 7.44308 0.688722 7.2428C0.687023 7.04253 0.762208 6.84958 0.898086 6.70552L3.5357 4.00461L0.898086 1.3037C0.758245 1.16046 0.679688 0.96621 0.679688 0.763669C0.679688 0.561128 0.758245 0.36688 0.898086 0.22364Z" fill="#383838"/>
+                                </svg>   
+                            </button>
+                        </div>
+                        <div class="dialog-body">
+                            <div class="column-option">
+                                <span class="column-label">MR#</span>
+                                <label class="toggle-switch">
+                                  <input type="checkbox" checked>
+                                  <span class="slider"></span>
+                                </label>
+                              </div>
+                          
+                              <div class="column-option">
+                                <span class="column-label">Patient Name</span>
+                                <label class="toggle-switch">
+                                  <input type="checkbox" >
+                                  <span class="slider"></span>
+                                </label>
+                              </div>
+                          
+                              <div class="column-option">
+                                <span class="column-label">Claim ID</span>
+                                <label class="toggle-switch">
+                                  <input type="checkbox" >
+                                  <span class="slider"></span>
+                                </label>
+                              </div>
+                          
+                              <div class="column-option">
+                                <span class="column-label">DOS</span>
+                                <label class="toggle-switch">
+                                  <input type="checkbox" checked>
+                                  <span class="slider"></span>
+                                </label>
+                              </div>
+                          
+                              <div class="column-option">
+                                <span class="column-label">Denial Code</span>
+                                <label class="toggle-switch">
+                                  <input type="checkbox" >
+                                  <span class="slider"></span>
+                                </label>
+                              </div>
+                          
+                              <div class="column-option">
+                                <span class="column-label">Denying Payer</span>
+                                <label class="toggle-switch">
+                                  <input type="checkbox" checked>
+                                  <span class="slider"></span>
+                                </label>
+                              </div>
+                          
+                              <div class="column-option">
+                                <span class="column-label">Payer Sequence</span>
+                                <label class="toggle-switch">
+                                  <input type="checkbox" >
+                                  <span class="slider"></span>
+                                </label>
+                              </div>
+                          
+                              <div class="column-option">
+                                <span class="column-label">Denied Amount</span>
+                                <label class="toggle-switch">
+                                  <input type="checkbox" checked>
+                                  <span class="slider"></span>
+                                </label>
+                              </div>
+                          
+                              <div class="column-option">
+                                <span class="column-label">Balance</span>
+                                <label class="toggle-switch">
+                                  <input type="checkbox" checked>
+                                  <span class="slider"></span>
+                                </label>
+                              </div>
+                          
+                              <div class="column-option">
+                                <span class="column-label">Status</span>
+                                <label class="toggle-switch">
+                                  <input type="checkbox" checked>
+                                  <span class="slider"></span>
+                                </label>
+                              </div>
+                          
+                              <div class="column-option">
+                                <span class="column-label">Status Date</span>
+                                <label class="toggle-switch">
+                                  <input type="checkbox" checked>
+                                  <span class="slider"></span>
+                                </label>
+                              </div>
+                          
+                              <div class="column-option">
+                                <span class="column-label">Assigned To</span>
+                                <label class="toggle-switch">
+                                  <input type="checkbox" checked>
+                                  <span class="slider"></span>
+                                </label>
+                              </div>
+                          
+                              <div class="column-option">
+                                <span class="column-label">CPT/HPCS Code</span>
+                                <label class="toggle-switch">
+                                  <input type="checkbox" checked>
+                                  <span class="slider"></span>
+                                </label>
+                              </div>
+                          
+                              <div class="column-option">
+                                <span class="column-label">DOS To</span>
+                                <label class="toggle-switch">
+                                  <input type="checkbox" checked>
+                                  <span class="slider"></span>
+                                </label>
+                              </div>
+                          
+                              <div class="column-option">
+                                <span class="column-label">Denial Date</span>
+                                <label class="toggle-switch">
+                                  <input type="checkbox" checked>
+                                  <span class="slider"></span>
+                                </label>
+                              </div>
+                        </div>
+                        <div class="dialog-footer">
+                            <button class="bttn secondary">Cancel</button>
+                            <button class="bttn primary">Save</button>
+                        </div>        
+                    </dialog>
+
+                    <dialog id="filter-customization-dialog" popover>
+                        <div class="dialog-header">
+                            <h2>Filter Customization Settings</h2>
+                            <button class="icon nobg" id="filter-customization-close-dialog" popovertarget="filter-customization-dialog" popoveraction="close">
+                                <svg width="9" height="8" viewBox="0 0 9 8" fill="none">
+                                    <path d="M0.898086 0.22364C1.03797 0.0804433 1.22766 0 1.42546 0C1.62325 0 1.81295 0.0804433 1.95283 0.22364L4.59044 2.92455L7.22805 0.22364C7.36873 0.0845015 7.55716 0.0075115 7.75274 0.00925183C7.94832 0.0109922 8.13541 0.0913237 8.27371 0.232944C8.41201 0.374565 8.49046 0.566144 8.49216 0.766418C8.49386 0.966693 8.41867 1.15964 8.2828 1.3037L5.64519 4.00461L8.2828 6.70552C8.41867 6.84958 8.49386 7.04253 8.49216 7.2428C8.49046 7.44308 8.41201 7.63466 8.27371 7.77628C8.13541 7.9179 7.94832 7.99823 7.75274 7.99997C7.55716 8.00171 7.36873 7.92472 7.22805 7.78558L4.59044 5.08467L1.95283 7.78558C1.81215 7.92472 1.62372 8.00171 1.42814 7.99997C1.23256 7.99823 1.04547 7.9179 0.907172 7.77628C0.768871 7.63466 0.690422 7.44308 0.688722 7.2428C0.687023 7.04253 0.762208 6.84958 0.898086 6.70552L3.5357 4.00461L0.898086 1.3037C0.758245 1.16046 0.679688 0.96621 0.679688 0.763669C0.679688 0.561128 0.758245 0.36688 0.898086 0.22364Z" fill="#383838"/>
+                                </svg>   
+                            </button>
+                        </div>
+                        <div class="dialog-body">
+                            <div class="column-option">
+                                <span class="column-label">MR# <em>DOS (Date of service) / Denial Date </em></span>
+                                <label class="toggle-switch">
+                                  <input type="checkbox" checked>
+                                  <span class="slider"></span>
+                                </label>
+                              </div>
+                          
+                              <div class="column-option">
+                                <span class="column-label">Date Range <em>From/To</em></span>
+                                <label class="toggle-switch">
+                                  <input type="checkbox" >
+                                  <span class="slider"></span>
+                                </label>
+                              </div>
+                          
+                              <div class="column-option">
+                                <span class="column-label">Denial Code <em>Search Field</em></span>
+                                <label class="toggle-switch">
+                                  <input type="checkbox" >
+                                  <span class="slider"></span>
+                                </label>
+                              </div>
+                          
+                              <div class="column-option">
+                                <span class="column-label">Claim ID <em>Search field</em></span>
+                                <label class="toggle-switch">
+                                  <input type="checkbox" checked>
+                                  <span class="slider"></span>
+                                </label>
+                              </div>
+                          
+                              <div class="column-option">
+                                <span class="column-label">Denying Payer <em>Dropdown with search and multiple-choice </em></span>
+                                <label class="toggle-switch">
+                                  <input type="checkbox" >
+                                  <span class="slider"></span>
+                                </label>
+                              </div>
+                                                        
+                              <div class="column-option">
+                                <span class="column-label">Payer Sequence <em>Dropdown with single-choice </em></span>
+                                <label class="toggle-switch">
+                                  <input type="checkbox" >
+                                  <span class="slider"></span>
+                                </label>
+                              </div>
+                          
+                              <div class="column-option">
+                                <span class="column-label">Status <em>Dropdown with multiple-choice</em></span>
+                                <label class="toggle-switch">
+                                  <input type="checkbox" checked>
+                                  <span class="slider"></span>
+                                </label>
+                              </div>
+                              <div class="column-option">
+                                <span class="column-label">Assigned To <em>Dropdown with multiple-choice</em></span>
+                                <label class="toggle-switch">
+                                  <input type="checkbox" checked>
+                                  <span class="slider"></span>
+                                </label>
+                              </div>
+                          
+                             
+                        </div>
+                        <div class="dialog-footer">
+                            <button class="bttn cancel">Cancel</button>
+                            <button class="bttn primary">Apply</button>
+                        </div>        
+                    </dialog>
                       
                     <div class="toggle-resolved-claims">
                         <input type="checkbox" name="" id="resolved_claims">
@@ -321,6 +542,7 @@
                 <!-- Grid -->
                 <div id="denialsGrid" class="grid ag-theme-billing"></div>
 
+                <!-- Balances & Pagination -->
                 <div class="balance-pagination">
                     <span>Total Balance: $126777,485.34</span>
                     <span>Total Denied Amount: $237,645.34</span>
@@ -331,6 +553,7 @@
                     </div>
                 </div>
 
+                <!-- buttons -->
                 <div class="btn-row floating-button-row">
                     <button class="bttn secondary">Resubmit Claim</button>
                     <button class="bttn secondary">Write Off Balance</button>
@@ -863,12 +1086,12 @@
             settingsMenu.style.display = settingsMenu.style.display === 'flex' ? 'none' : 'flex';
         });
 
-        addEventListener('click', (e) => {            
-            if(e.target !== settingsBtn){
-                settingsBtn.classList.remove('open');
-                settingsMenu.style.display = 'none';
-            }           
-        }, true);
+        // addEventListener('click', (e) => {            
+        //     if(e.target !== settingsBtn){
+        //         settingsBtn.classList.remove('open');
+        //         settingsMenu.style.display = 'none';
+        //     }           
+        // }, true);
     </script>
 
     <script>
@@ -894,6 +1117,27 @@
         })
 
     </script>
+
+
+    <!-- <script>
+        const columnCustomizationBtn = document.querySelector('#column-customization-btn');
+        const columnCustomizationDialog = document.querySelector('#column-customization-dialog');
+        const columnCustomizationCloseBtn = document.querySelector('#column-customization-close-dialog');
+
+        const filterCustomizationBtn = document.querySelector('#column-customization-btn');
+        const filterCustomizationDialog = document.querySelector('#column-customization-dialog');
+        const filterCustomizationCloseBtn = document.querySelector('#filter--customization-close-dialog');
+
+        columnCustomizationBtn.addEventListener('click', () => {
+            columnCustomizationDialog.showModal();
+            settingsBtn.classList.add('open');
+        });
+
+        columnCustomizationCloseBtn.addEventListener('click', () => {
+            columnCustomizationDialog.close();
+            settingsBtn.classList.remove('open');
+        });
+    </script> -->
 
 </body>
 </html> 
