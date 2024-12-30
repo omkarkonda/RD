@@ -619,6 +619,19 @@ html, body{
                 .dialog-body {
                     font-size: var(--f11px);
                     color: var(--textcolor);
+                    max-height: 450px;
+                    overflow-y: auto;
+                    overflow-x: hidden;
+                }
+
+                .dialog-body::-webkit-scrollbar{
+                    width: 5px;
+                    background-color: #f0f0f0;
+                }
+        
+                .dialog-body::-webkit-scrollbar-thumb{
+                    background-color: #C8DCF3;
+                    border-radius: 4px;
                 }
 
                 .dialog-footer {
