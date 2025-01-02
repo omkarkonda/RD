@@ -148,7 +148,7 @@ html, body{
                 fill: white;
             }
         }
-        &:active{
+        &:active, &.active{
             color: var(--color-green);
             background-color: var(--bgcolor);
             svg path{
@@ -636,9 +636,6 @@ html, body{
            .billing-module-right-column-header{
                 justify-content: flex-start;
                 position: relative;
-
-                
-                position: relative;
                 h2 + button {
                     background-color: transparent;
                     svg{
@@ -691,6 +688,7 @@ html, body{
                     }
                 }
                 
+
         
                 :is(dialog, .dialog) {
                     border: 1px solid #ccc;
@@ -794,13 +792,39 @@ html, body{
 
                 }
 
-                #task-settings-container .dialog{
-                    display: flex;
-                    flex-direction: column;
-                    .dialog-body{
-                        flex-grow: 1;
+              
+                #task-settings-container{                                
+                    background-color: transparent;                
+                    width: calc(600px + 1rem + 5px);
+                    border: none;
+                    box-shadow: none;                    
+                }
+                
+                .task-settings-container{
+                    display: grid;
+                    grid-template-columns: 1fr 1fr;               
+                    gap: 1rem;
+                    .dialog{
+                        display: flex;
+                        flex-direction: column;
+                        .dialog-body{
+                            flex-grow: 1;
+                        }
                     }
                 }
+
+                .settings{
+                    position: absolute;
+                    top: 100%;
+                    left: 175px;
+                    z-index: 1;
+                    
+                     &.hidden{
+
+                        display: none;
+                    }
+                }
+
 
                 /* Styling for the column options */
                 .column-option {
@@ -930,19 +954,9 @@ html, body{
     
                 }
     
-                #task-settings-container{                                
-                    background-color: transparent;                
-                    width: calc(600px + 1rem + 5px);
-                    border: none;
-                    box-shadow: none;
-                    
-                }
                 
-                #task-settings-container:popover-open{
-                    display: grid;
-                    grid-template-columns: 1fr  1fr;
-                    gap:1rem;                
-                }
+                
+             
     
                 #view-assignments{
                     display: none;
