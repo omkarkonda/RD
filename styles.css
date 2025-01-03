@@ -1,7 +1,7 @@
 html, body{
     margin:0;
     padding: 0;
-    height: 100%;
+    
 }
 
 
@@ -285,7 +285,7 @@ html, body{
         border-bottom: 1px solid var(--border-color-gray);
         padding: 12px 15px 15px 15px;    
         margin: 0;    
-        .row{
+        .filter-row{
             display: flex;
             justify-content: space-between;
             margin-bottom: 5px;
@@ -334,11 +334,11 @@ html, body{
 
         }
 
-        .row + .row{
+        .filter-row + .filter-row{
             margin-bottom: 0;
         }
 
-        .row.v{
+        .filter-row.v{
             flex-direction: column;
             border: 1px solid var(--border-color-gray);
             border-radius: 0.1875rem;
@@ -354,11 +354,11 @@ html, body{
             }
         }
 
-        .row.v:focus-within{
+        .filter-row.v:focus-within{
             border-color: var(--color-sky-blue)
         }
 
-        .row.search{
+        .filter-row.search{
             border: 1px solid var(--border-color-gray);
             border-radius: 0.1875rem;
             padding: 0.5rem;
@@ -382,7 +382,7 @@ html, body{
             }
         }
 
-        .row.select{
+        .filter-row.select{
             width: 100%;
             .multiselect-container {
                 position: relative;
@@ -565,7 +565,7 @@ html, body{
         grid-template-columns: 330px 1fr;
         flex-grow: 1;
         gap: var(--f20px);
-
+        height: calc(100vh - 205px);
         .column{
             border-radius: var(--f10px);
             background-color: white;
@@ -826,7 +826,7 @@ html, body{
                 .settings{
                     position: absolute;
                     top: 100%;
-                    left: 175px;
+                    left: 170px;
                     z-index: 1;
                     
                      &.hidden{
