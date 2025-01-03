@@ -470,7 +470,7 @@
                         </div>
                         <div class="dialog-footer">
                             <button class="bttn cancel">Cancel</button>
-                            <button class="bttn primary">Save</button>
+                            <button class="bttn primary">Apply</button>
                         </div>        
                     </div>
 
@@ -484,21 +484,21 @@
                             </button>
                         </div>
                         <div class="dialog-body">
-                            <div class="column-option">
-                                <span class="column-label">MR# <em>DOS (Date of service) / Denial Date </em></span>
+                            <!-- <div class="column-option">
+                                <span class="column-label">Date Type <em>DOS (Date of service) / Denial Date </em></span>
                                 <label class="toggle-switch">
                                   <input type="checkbox" checked>
                                   <span class="slider"></span>
                                 </label>
-                              </div>
+                              </div> -->
                           
-                              <div class="column-option">
+                              <!-- <div class="column-option">
                                 <span class="column-label">Date Range <em>From/To</em></span>
                                 <label class="toggle-switch">
                                   <input type="checkbox" >
                                   <span class="slider"></span>
                                 </label>
-                              </div>
+                              </div> -->
                           
                               <div class="column-option">
                                 <span class="column-label">Denial Code <em>Search Field</em></span>
@@ -580,7 +580,7 @@
                                             <button class="reset">Reset</button>
                                         </div>
                                         <div class="row select">
-                                            <div class="multiselect-container" tabindex="0">
+                                            <div class="multiselect-container" data-multiselect-behavior="multiple" tabindex="0">
                                                 <div class="multiselect">
                                                 <label>Select Payer/s</label>
                                                 <svg width="7" height="5" viewBox="0 0 7 5" fill="none" xmlns="http://www.w3.org/2000/svg" class="down-arrow">
@@ -613,7 +613,7 @@
                                             <button class="reset">Reset</button>
                                         </div>
                                         <div class="row select">
-                                            <div class="multiselect-container" tabindex="0">
+                                            <div class="multiselect-container" data-multiselect-behavior="multiple" tabindex="0">
                                                 <div class="multiselect">
                                                 <label>Select </label>
                                                 <svg width="7" height="5" viewBox="0 0 7 5" fill="none" xmlns="http://www.w3.org/2000/svg" class="down-arrow">
@@ -1038,8 +1038,7 @@
                         popup.classList.add('hidden')
                     }
                 });
-                element.classList.toggle('hidden');
-                
+                element.classList.toggle('hidden');                
             })           
         }
 
@@ -1242,81 +1241,94 @@
         const gridDiv = document.querySelector('#denialsGrid');
         new agGrid.Grid(gridDiv, gridOptions);
     </script>
-    
+       
+
     <script>
-    const multiselectContainers = document.querySelectorAll('.multiselect-container');
-    let currentlyOpen = null;
+        const multiselectContainers = document.querySelectorAll('.multiselect-container');
+        let currentlyOpen = null;
 
-    multiselectContainers.forEach(container => {
-        const multiselect = container.querySelector('.multiselect');
-        const selected = container.querySelector('.multiselect-selected');
-        const optionsContainer = container.querySelector('.multiselect-options');
-        const optionsList = container.querySelectorAll('.multiselect-option');
-        const searchInput = container.querySelector('.multiselect-input');
+        multiselectContainers.forEach(container => {
+            const multiselect = container.querySelector('.multiselect');
+            const selected = container.querySelector('.multiselect-selected');
+            const optionsContainer = container.querySelector('.multiselect-options');
+            const optionsList = container.querySelectorAll('.multiselect-option');
+            const searchInput = container.querySelector('.multiselect-input');
 
-        const selectedOptions = [];
-        const selectOption = (option) => {
-            const newOption = document.createElement('div');
-            newOption.classList.add('multiselect-selected');
-            newOption.innerText = option.innerText;
-            newOption.addEventListener('click', () => {
-            newOption.remove();
-            const index = selectedOptions.indexOf(option.innerText);
-            if (index > -1) {
-                selectedOptions.splice(index, 1);
-            }
-            option.classList.remove('selected');
-            });
-            selected.parentNode.insertBefore(newOption, selected);
-            selectedOptions.push(option.innerText);
-            option.classList.add('selected');
-        };
+            const behavior = container.getAttribute('data-multiselect-behavior') || 'exclusive'; // Default to 'exclusive'
 
-        const deselectAll = () => {
-            const selectedOptions = document.querySelectorAll('.multiselect-selected');
-            selectedOptions.forEach(option => option.remove());
-            optionsList.forEach(option => option.classList.remove('selected'));
-            selectedOptions.length = 0;
-        };
+            const selectedOptions = [];
+            const selectOption = (option) => {
+                const newOption = document.createElement('div');
+                newOption.classList.add('multiselect-selected');
+                newOption.innerText = option.innerText;
+                newOption.addEventListener('click', () => {
+                    newOption.remove();
+                    const index = selectedOptions.indexOf(option.innerText);
+                    if (index > -1) {
+                        selectedOptions.splice(index, 1);
+                    }
+                    option.classList.remove('selected');
+                });
+                selected.parentNode.insertBefore(newOption, selected);
+                selectedOptions.push(option.innerText);
+                option.classList.add('selected');
+            };
 
-        multiselect.addEventListener('click', (e) => {
-            
-            if (currentlyOpen && currentlyOpen !== optionsContainer) {
-                 currentlyOpen.style.display = 'none';                                
-            }
+            const deselectAll = () => {
+                const selectedOptions = document.querySelectorAll('.multiselect-selected');
+                selectedOptions.forEach(option => option.remove());
+                optionsList.forEach(option => option.classList.remove('selected'));
+                selectedOptions.length = 0;
+            };
 
-            // if(!multiselect.classList.contains('open')) {                
-            //     multiselect.classList.add('open');
-            // }
-            
-            optionsContainer.style.display = optionsContainer.style.display === 'block' ? 'none' : 'block';
-            currentlyOpen = optionsContainer.style.display === 'block' ? optionsContainer : null;
+            multiselect.addEventListener('click', (e) => {
+                if (behavior === 'exclusive') {
+                    // Close other multiselects
+                    multiselectContainers.forEach(otherContainer => {
+                        if (otherContainer !== container) {
+                            const otherOptionsContainer = otherContainer.querySelector('.multiselect-options');
+                            const otherMultiselect = otherContainer.querySelector('.multiselect');
+                            otherOptionsContainer.style.display = 'none';
+                            otherMultiselect.classList.remove('open');
+                        }
+                    });
+                }
 
-        });
+                // Toggle the current options container
+                const isVisible = optionsContainer.style.display === 'block';
+                optionsContainer.style.display = isVisible ? 'none' : 'block';
 
-        searchInput?.addEventListener('input', () => {
-            const value = searchInput.value.toLowerCase();
-            optionsList.forEach(option => {
-            if (option.innerText.toLowerCase().includes(value)) {
-                option.style.display = 'flex';
-            } else {
-                option.style.display = 'none';
-            }
-            });
-        });
-
-        optionsList.forEach(option => {
-            option.addEventListener('click', () => {
-                if (!option.classList.contains('selected')) {
-                    selectOption(option);
+                // Add or remove the active class
+                if (isVisible) {
+                    multiselect.classList.remove('open');
+                    currentlyOpen = null;
+                } else {
+                    multiselect.classList.add('open');
+                    currentlyOpen = optionsContainer;
                 }
             });
-        });
-    });
-    
-    </script>
 
-   
+            searchInput?.addEventListener('input', () => {
+                const value = searchInput.value.toLowerCase();
+                optionsList.forEach(option => {
+                    if (option.innerText.toLowerCase().includes(value)) {
+                        option.style.display = 'flex';
+                    } else {
+                        option.style.display = 'none';
+                    }
+                });
+            });
+
+            optionsList.forEach(option => {
+                option.addEventListener('click', () => {
+                    if (!option.classList.contains('selected')) {
+                        selectOption(option);
+                    }
+                });
+            });
+        });
+
+    </script>
 
     <script>
         const rdtabs = document.querySelectorAll('.switch li');
@@ -1343,9 +1355,18 @@
         const settingsMenu = document.getElementById('settings-menu');
         const allSettings = document.querySelectorAll('.settings');
 
+        hideFilters = function(){
+            const denialStatPayerFilter = document.getElementById('denial-stat-payer-filter');
+            const denialsPayerGridFilter = document.getElementById('denials-payer-grid-filter');
+            denialStatPayerFilter.classList.add('hidden');
+            denialsPayerGridFilter.classList.add('hidden');
+        }    
+        
+
         settingsBtn.addEventListener('click', () => {
             settingsBtn.classList.toggle('open');
             settingsMenu.style.display = settingsMenu.style.display === 'flex' ? 'none' : 'flex';           
+            hideFilters();
         });
 
 
