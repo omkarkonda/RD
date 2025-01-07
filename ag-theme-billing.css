@@ -821,7 +821,8 @@
   .ag-theme-billing .ag-cell.ag-cell-last-left-pinned:not(.ag-cell-range-right):not(.ag-cell-range-single-cell) {
     border-right: solid 1px #babfc7; }
   .ag-theme-billing .ag-row-selected {
-    background-color: rgba(33, 150, 243, 0.3); }
+    background-color: var(--hover-row-color) 
+  }
   .ag-theme-billing .ag-cell-range-selected:not(.ag-cell-focus) {
     background-color: rgba(33, 150, 243, 0.2); }
     .ag-theme-billing .ag-cell-range-selected:not(.ag-cell-focus).ag-cell-range-chart {
@@ -1859,7 +1860,8 @@
   .ag-theme-billing .ag-header-cell-text{
     white-space: wrap;
     text-align: center;   
-    font-weight: var(--fw400);   
+    font-weight: var(--fw300);   
+    line-height: 1;
   }
 
   .ag-theme-billing .ag-ltr .ag-selection-checkbox{

@@ -13,9 +13,18 @@
     <script src="https://cdn.jsdelivr.net/npm/ag-grid-community@23.0.2/dist/ag-grid-community.min.noStyle.min.js"></script>
     <!-- agGrid styles -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/ag-grid-community@23.0.2/dist/styles/ag-grid.css"/>
-    <link rel="stylesheet" href="styles.css">    
-    <link rel="stylesheet" href="./ag-theme-billing.css"/>
 
+
+    <!-- slim select -->
+    <script src="https://unpkg.com/slim-select@latest/dist/slimselect.min.js"></script>
+    <script src="https://momentjs.com/downloads/moment.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/pikaday/pikaday.js"></script>
+
+
+    <link rel="stylesheet" href="styles.css">    
+    <link rel="stylesheet" href="slimselect.css">
+    <link rel="stylesheet" href="ag-theme-billing.css"/>
+    <link rel="stylesheet" href="pikaday.css">
 
 </head>
 <body>
@@ -91,13 +100,17 @@
                                     <button class="reset">Reset</button>                    
                                 </div>
                                 <div class="filter-row field-group">
-                                    <label for="from-date" class="col">
+                                    <label class="col">
                                         <span>From:</span>
-                                        <input type="date" name="from" id="from-date">
+                                        <div class="datepicker">
+                                            <input type="text" name="from" id="denialstats-from-date" placeholder="MM-DD-YYYY">
+                                        </div>
                                     </label>
-                                    <label for="to-date" class="col">
+                                    <label class="col">
                                         <span>To:</span>
-                                        <input type="date" name="from" id="to-date">
+                                        <div class="datepicker">
+                                            <input type="text" name="to" id="denialstats-to-date" placeholder="MM-DD-YYYY">                                            
+                                        </div>
                                     </label>
                                 </div>
                             </fieldset>
@@ -576,33 +589,25 @@
                                     </div>
                                     <fieldset>
                                         <div class="filter-row">
-                                            <span>Payer/s</span>
+                                            <span>Denying Payer</span>
                                             <button class="reset">Reset</button>
                                         </div>
                                         <div class="filter-row select">
-                                            <div class="multiselect-container" data-multiselect-behavior="multiple" tabindex="0">
-                                                <div class="multiselect">
-                                                <label>Select Payer/s</label>
-                                                <svg width="7" height="5" viewBox="0 0 7 5" fill="none" xmlns="http://www.w3.org/2000/svg" class="down-arrow">
-                                                    <path d="M6.64979 9.23058e-07L0.34961 3.72279e-07C0.285824 0.000191102 0.2233 0.0169753 0.168769 0.0485462C0.114237 0.0801171 0.0697631 0.125278 0.0401334 0.17917C0.0105037 0.233062 -0.00315959 0.293644 0.000614572 0.354393C0.00438873 0.415142 0.0254568 0.47376 0.061552 0.523935L3.21164 4.86501C3.3422 5.045 3.6565 5.045 3.78741 4.86501L6.9375 0.523935C6.97396 0.473865 6.99534 0.415218 6.99932 0.354368C7.0033 0.293517 6.98972 0.23279 6.96007 0.178784C6.93041 0.124778 6.88581 0.0795579 6.83111 0.0480385C6.7764 0.0165186 6.71369 -9.53925e-05 6.64979 9.23058e-07Z" fill="#383838"/>
-                                                </svg>
-                                                <svg width="7" height="5" viewBox="0 0 7 5" fill="none" xmlns="http://www.w3.org/2000/svg" class="up-arrow">
-                                                    <path d="M6.64979 5L0.34961 5C0.285824 4.99981 0.2233 4.98302 0.168769 4.95145C0.114237 4.91988 0.0697631 4.87472 0.0401334 4.82083C0.0105037 4.76694 -0.00315959 4.70636 0.000614572 4.64561C0.00438873 4.58486 0.0254568 4.52624 0.061552 4.47607L3.21164 0.134991C3.3422 -0.0449966 3.6565 -0.0449966 3.78741 0.134991L6.9375 4.47606C6.97396 4.52614 6.99534 4.58478 6.99932 4.64563C7.0033 4.70648 6.98972 4.76721 6.96007 4.82122C6.93041 4.87522 6.88581 4.92044 6.83111 4.95196C6.7764 4.98348 6.71369 5.0001 6.64979 5Z" fill="#383838"/>
-                                                </svg>
-                                                </div>
-                            
-                                                <div class="multiselect-options open">
-                                                <input type="text" class="multiselect-input" placeholder="Search...">
-                                                <div class="multiselect-option"><input type="checkbox">United Healthcare</div>
-                                                <div class="multiselect-option"><input type="checkbox">Medicare</div>
-                                                <div class="multiselect-option"><input type="checkbox">Blue Cross</div>
-                                                <div class="multiselect-option"><input type="checkbox">BCBS</div>
-                                                <div class="multiselect-option"><input type="checkbox">United Healthcare</div>
-                                                <div class="multiselect-option"><input type="checkbox">Medicare</div>
-                                                <div class="multiselect-option"><input type="checkbox">Blue Cross</div>
-                                                <div class="multiselect-option"><input type="checkbox">BCBS</div>                        
-                                                </div>
-                                            </div>
+                                            <select name="denying-payer" id="denying-payer-settings" multiple>
+                                                <option value="United Healthcare">United Healthcare</option>
+                                                <option value="Medicare">Medicare</option>
+                                                <option value="Blue Cross">Blue Cross</option>
+                                                <option value="BCBS">BCBS</option>
+                                                <option value="United Healthcare2">United Healthcare2</option>
+                                                <option value="Medicare2">Medicare2</option>
+                                                <option value="Blue Cross2">Blue Cross2</option>
+                                                <option value="BCBS2">BCBS2</option>
+                                                <option value="United Healthcare3">United Healthcare3</option>
+                                                <option value="Medicare3">Medicare3</option>
+                                                <option value="Blue Cross3">Blue Cross3</option>
+                                                <option value="BCBS3">BCBS3</option>                                            
+                                            </select>
+                                            <div id="denying-payer-settings-dd"></div>
                                         </div>
                                     </fieldset>
                             
@@ -613,28 +618,17 @@
                                             <button class="reset">Reset</button>
                                         </div>
                                         <div class="filter-row select">
-                                            <div class="multiselect-container" data-multiselect-behavior="multiple" tabindex="0">
-                                                <div class="multiselect">
-                                                <label>Select </label>
-                                                <svg width="7" height="5" viewBox="0 0 7 5" fill="none" xmlns="http://www.w3.org/2000/svg" class="down-arrow">
-                                                    <path d="M6.64979 9.23058e-07L0.34961 3.72279e-07C0.285824 0.000191102 0.2233 0.0169753 0.168769 0.0485462C0.114237 0.0801171 0.0697631 0.125278 0.0401334 0.17917C0.0105037 0.233062 -0.00315959 0.293644 0.000614572 0.354393C0.00438873 0.415142 0.0254568 0.47376 0.061552 0.523935L3.21164 4.86501C3.3422 5.045 3.6565 5.045 3.78741 4.86501L6.9375 0.523935C6.97396 0.473865 6.99534 0.415218 6.99932 0.354368C7.0033 0.293517 6.98972 0.23279 6.96007 0.178784C6.93041 0.124778 6.88581 0.0795579 6.83111 0.0480385C6.7764 0.0165186 6.71369 -9.53925e-05 6.64979 9.23058e-07Z" fill="#383838"/>
-                                                </svg>
-                                                <svg width="7" height="5" viewBox="0 0 7 5" fill="none" xmlns="http://www.w3.org/2000/svg" class="up-arrow">
-                                                    <path d="M6.64979 5L0.34961 5C0.285824 4.99981 0.2233 4.98302 0.168769 4.95145C0.114237 4.91988 0.0697631 4.87472 0.0401334 4.82083C0.0105037 4.76694 -0.00315959 4.70636 0.000614572 4.64561C0.00438873 4.58486 0.0254568 4.52624 0.061552 4.47607L3.21164 0.134991C3.3422 -0.0449966 3.6565 -0.0449966 3.78741 0.134991L6.9375 4.47606C6.97396 4.52614 6.99534 4.58478 6.99932 4.64563C7.0033 4.70648 6.98972 4.76721 6.96007 4.82122C6.93041 4.87522 6.88581 4.92044 6.83111 4.95196C6.7764 4.98348 6.71369 5.0001 6.64979 5Z" fill="#383838"/>
-                                                </svg>
-                                                </div>
-                            
-                                                <div class="multiselect-options">
-                                                <!-- <input type="text" class="multiselect-input" placeholder="Search..."> -->
-                                                <div class="multiselect-option"><input name="assigned-to" type="radio">Emmy Frank</div>
-                                                <div class="multiselect-option"><input name="assigned-to" type="radio">Garry Davids</div>
-                                                <div class="multiselect-option"><input name="assigned-to" type="radio">Anne Smith</div>
-                                                <div class="multiselect-option"><input name="assigned-to" type="radio">Garry Davids</div>
-                                                <div class="multiselect-option"><input name="assigned-to" type="radio">Emmy Frank</div>
-                                                </div>
-                                            </div>
+                                            <select name="" id="assigned-to-settings">
+                                                <option data-placeholder="true"></option>
+                                                <option value="1">Emmy Frank</option>
+                                                <option value="2">Garry Davids</option>
+                                                <option value="3">Anne Smith</option>
+                                                <option value="4">Emmy Frank</option>
+                                                <option value="5">Garry Davids</option>                                    
+                                            </select>
+                                            <div id="assigned-to-settings-dd"></div>
                                         </div>
-                                    </fieldset>
+                                    </fieldset>	
                             
                                 </div>
                                 <div class="dialog-footer">
@@ -799,16 +793,20 @@
                                 <fieldset>
                                     <div class="filter-row">
                                         <span>Date Range</span>
-                                        <button class="reset">Reset</button>
+                                        <button class="reset">Reset</button>                    
                                     </div>
-                                    <div class="filter-row">
-                                        <label for="from-date" class="col">
+                                    <div class="filter-row field-group">
+                                        <label class="col">
                                             <span>From:</span>
-                                            <input type="date" name="from" id="from-date">
+                                            <div class="datepicker">
+                                                <input type="text" name="from" id="denial-from-date" placeholder="MM-DD-YYYY">
+                                            </div>
                                         </label>
-                                        <label for="to-date" class="col">
+                                        <label class="col">
                                             <span>To:</span>
-                                            <input type="date" name="from" id="to-date">
+                                            <div class="datepicker">
+                                                <input type="text" name="to" id="denial-to-date" placeholder="MM-DD-YYYY">                                            
+                                            </div>
                                         </label>
                                     </div>
                                 </fieldset>
@@ -845,42 +843,24 @@
                                         <button class="reset">Reset</button>
                                     </div>
                                     <div class="filter-row select">
-                                        <div class="multiselect-container" tabindex="0">
-
-                                            <div class="multiselect">
-                                            <label>Select Payer</label>                             
-                                            <svg width="7" height="5" viewBox="0 0 7 5" fill="none" xmlns="http://www.w3.org/2000/svg" class="down-arrow">
-                                                <path d="M6.64979 9.23058e-07L0.34961 3.72279e-07C0.285824 0.000191102 0.2233 0.0169753 0.168769 0.0485462C0.114237 0.0801171 0.0697631 0.125278 0.0401334 0.17917C0.0105037 0.233062 -0.00315959 0.293644 0.000614572 0.354393C0.00438873 0.415142 0.0254568 0.47376 0.061552 0.523935L3.21164 4.86501C3.3422 5.045 3.6565 5.045 3.78741 4.86501L6.9375 0.523935C6.97396 0.473865 6.99534 0.415218 6.99932 0.354368C7.0033 0.293517 6.98972 0.23279 6.96007 0.178784C6.93041 0.124778 6.88581 0.0795579 6.83111 0.0480385C6.7764 0.0165186 6.71369 -9.53925e-05 6.64979 9.23058e-07Z" fill="#383838"/>
-                                            </svg> 
-                                            <svg width="7" height="5" viewBox="0 0 7 5" fill="none" xmlns="http://www.w3.org/2000/svg" class="up-arrow">
-                                                <path d="M6.64979 5L0.34961 5C0.285824 4.99981 0.2233 4.98302 0.168769 4.95145C0.114237 4.91988 0.0697631 4.87472 0.0401334 4.82083C0.0105037 4.76694 -0.00315959 4.70636 0.000614572 4.64561C0.00438873 4.58486 0.0254568 4.52624 0.061552 4.47607L3.21164 0.134991C3.3422 -0.0449966 3.6565 -0.0449966 3.78741 0.134991L6.9375 4.47606C6.97396 4.52614 6.99534 4.58478 6.99932 4.64563C7.0033 4.70648 6.98972 4.76721 6.96007 4.82122C6.93041 4.87522 6.88581 4.92044 6.83111 4.95196C6.7764 4.98348 6.71369 5.0001 6.64979 5Z" fill="#383838"/>
-                                            </svg>
-                                                
-                                            </div>
-                                            
-                                            <div class="multiselect-options">
-                                            <input type="text" class="multiselect-input" placeholder="Search...">
-                                            <div class="multiselect-option"><input type="checkbox">United Healthcare</div>
-                                            <div class="multiselect-option"><input type="checkbox">Medicare</div>
-                                            <div class="multiselect-option"><input type="checkbox">Blue Cross</div>
-                                            <div class="multiselect-option"><input type="checkbox">BCBS</div>                              
-                                            <div class="multiselect-option"><input type="checkbox">United Healthcare</div>
-                                            <div class="multiselect-option"><input type="checkbox">Medicare</div>
-                                            <div class="multiselect-option"><input type="checkbox">Blue Cross</div>
-                                            <div class="multiselect-option"><input type="checkbox">BCBS</div>                              
-                                            <div class="multiselect-option"><input type="checkbox">United Healthcare</div>
-                                            <div class="multiselect-option"><input type="checkbox">Medicare</div>
-                                            <div class="multiselect-option"><input type="checkbox">Blue Cross</div>
-                                            <div class="multiselect-option"><input type="checkbox">BCBS</div>                              
-                                            <div class="multiselect-option"><input type="checkbox">United Healthcare</div>
-                                            <div class="multiselect-option"><input type="checkbox">Medicare</div>
-                                            <div class="multiselect-option"><input type="checkbox">Blue Cross</div>
-                                            <div class="multiselect-option"><input type="checkbox">BCBS</div>                              
-                                            </div>
-
-                                        </div>
+                                        <select name="denying-payer" id="denying-payer" multiple>
+                                            <option value="United Healthcare">United Healthcare</option>
+                                            <option value="Medicare">Medicare</option>
+                                            <option value="Blue Cross">Blue Cross</option>
+                                            <option value="BCBS">BCBS</option>
+                                            <option value="United Healthcare2">United Healthcare2</option>
+                                            <option value="Medicare2">Medicare2</option>
+                                            <option value="Blue Cross2">Blue Cross2</option>
+                                            <option value="BCBS2">BCBS2</option>
+                                            <option value="United Healthcare3">United Healthcare3</option>
+                                            <option value="Medicare3">Medicare3</option>
+                                            <option value="Blue Cross3">Blue Cross3</option>
+                                            <option value="BCBS3">BCBS3</option>                                            
+                                        </select>
+                                        <div id="denying-payer-dd"></div>
                                     </div>
-                                </fieldset>    
+                                </fieldset>
+                                
 
                                 <fieldset>
                                     <div class="filter-row">
@@ -888,94 +868,54 @@
                                         <button class="reset">Reset</button>
                                     </div>
                                     <div class="filter-row select">
-                                        <div class="multiselect-container" tabindex="0">
-
-                                            <div class="multiselect">
-                                            <label>Select Sequence</label>                             
-                                            <svg width="7" height="5" viewBox="0 0 7 5" fill="none" xmlns="http://www.w3.org/2000/svg" class="down-arrow">
-                                                <path d="M6.64979 9.23058e-07L0.34961 3.72279e-07C0.285824 0.000191102 0.2233 0.0169753 0.168769 0.0485462C0.114237 0.0801171 0.0697631 0.125278 0.0401334 0.17917C0.0105037 0.233062 -0.00315959 0.293644 0.000614572 0.354393C0.00438873 0.415142 0.0254568 0.47376 0.061552 0.523935L3.21164 4.86501C3.3422 5.045 3.6565 5.045 3.78741 4.86501L6.9375 0.523935C6.97396 0.473865 6.99534 0.415218 6.99932 0.354368C7.0033 0.293517 6.98972 0.23279 6.96007 0.178784C6.93041 0.124778 6.88581 0.0795579 6.83111 0.0480385C6.7764 0.0165186 6.71369 -9.53925e-05 6.64979 9.23058e-07Z" fill="#383838"/>
-                                            </svg> 
-                                            <svg width="7" height="5" viewBox="0 0 7 5" fill="none" xmlns="http://www.w3.org/2000/svg" class="up-arrow">
-                                                <path d="M6.64979 5L0.34961 5C0.285824 4.99981 0.2233 4.98302 0.168769 4.95145C0.114237 4.91988 0.0697631 4.87472 0.0401334 4.82083C0.0105037 4.76694 -0.00315959 4.70636 0.000614572 4.64561C0.00438873 4.58486 0.0254568 4.52624 0.061552 4.47607L3.21164 0.134991C3.3422 -0.0449966 3.6565 -0.0449966 3.78741 0.134991L6.9375 4.47606C6.97396 4.52614 6.99534 4.58478 6.99932 4.64563C7.0033 4.70648 6.98972 4.76721 6.96007 4.82122C6.93041 4.87522 6.88581 4.92044 6.83111 4.95196C6.7764 4.98348 6.71369 5.0001 6.64979 5Z" fill="#383838"/>
-                                            </svg>
-                                            </div>
-                                            
-                                            <div class="multiselect-options">
-                                            <!-- <input type="text" class="multiselect-input" placeholder="Search..."> -->
-                                            <div class="multiselect-option"><input type="radio" name="sequence">Primary</div>
-                                            <div class="multiselect-option"><input type="radio" name="sequence">Secondary</div>
-                                            <div class="multiselect-option"><input type="radio" name="sequence">Tertiary</div>
-                                                                        
-                                                            
-                                            </div>
-
-                                        </div>
+                                        <select name="" id="payer-sequence">
+                                            <option data-placeholder="true"></option>
+                                            <option value="primary">Primary </option>
+                                            <option value="secondary">Secondary </option>
+                                            <option value="tertiary">Tertiary</option>
+                                        </select>
+                                        <div id="payer-sequence-dd"></div>
                                     </div>
-                                </fieldset>
-                                
+                                </fieldset>    
+
                                 <fieldset>
                                     <div class="filter-row">
                                         <span>Status</span>
                                         <button class="reset">Reset</button>
                                     </div>
                                     <div class="filter-row select">
-                                        <div class="multiselect-container" tabindex="0">
-                                            <div class="multiselect">
-                                            <label>Select Status</label>                             
-                                            <svg width="7" height="5" viewBox="0 0 7 5" fill="none" xmlns="http://www.w3.org/2000/svg" class="down-arrow">
-                                                <path d="M6.64979 9.23058e-07L0.34961 3.72279e-07C0.285824 0.000191102 0.2233 0.0169753 0.168769 0.0485462C0.114237 0.0801171 0.0697631 0.125278 0.0401334 0.17917C0.0105037 0.233062 -0.00315959 0.293644 0.000614572 0.354393C0.00438873 0.415142 0.0254568 0.47376 0.061552 0.523935L3.21164 4.86501C3.3422 5.045 3.6565 5.045 3.78741 4.86501L6.9375 0.523935C6.97396 0.473865 6.99534 0.415218 6.99932 0.354368C7.0033 0.293517 6.98972 0.23279 6.96007 0.178784C6.93041 0.124778 6.88581 0.0795579 6.83111 0.0480385C6.7764 0.0165186 6.71369 -9.53925e-05 6.64979 9.23058e-07Z" fill="#383838"/>
-                                            </svg> 
-                                            <svg width="7" height="5" viewBox="0 0 7 5" fill="none" xmlns="http://www.w3.org/2000/svg" class="up-arrow">
-                                                <path d="M6.64979 5L0.34961 5C0.285824 4.99981 0.2233 4.98302 0.168769 4.95145C0.114237 4.91988 0.0697631 4.87472 0.0401334 4.82083C0.0105037 4.76694 -0.00315959 4.70636 0.000614572 4.64561C0.00438873 4.58486 0.0254568 4.52624 0.061552 4.47607L3.21164 0.134991C3.3422 -0.0449966 3.6565 -0.0449966 3.78741 0.134991L6.9375 4.47606C6.97396 4.52614 6.99534 4.58478 6.99932 4.64563C7.0033 4.70648 6.98972 4.76721 6.96007 4.82122C6.93041 4.87522 6.88581 4.92044 6.83111 4.95196C6.7764 4.98348 6.71369 5.0001 6.64979 5Z" fill="#383838"/>
-                                            </svg>
-                                            </div>
-                                            
-                                            <div class="multiselect-options">
-                                            <!-- <input type="text" class="multiselect-input" placeholder="Search..."> -->
-                                            <div class="multiselect-option"><input type="checkbox">Paid</div>
-                                            <div class="multiselect-option"><input type="checkbox">Written Off</div>
-                                            <div class="multiselect-option"><input type="checkbox">Balance Transferred</div>                                              
-                                            </div>
-
-                                        </div>
+                                        <select name="" id="status-filter" multiple>                                            
+                                            <option value="paid">Paid</option>
+                                            <option value="written-off">Written Off</option>
+                                            <option value="balance-transferred">Balance Transferred</option>
+                                        </select>
+                                        <div id="status-filter-dd"></div>
+                                       
                                     </div>
-                                </fieldset>   
-
-
+                                </fieldset>
+                                
+                                
                                 <fieldset>
                                     <div class="filter-row">
                                         <span>Assigned To</span>
                                         <button class="reset">Reset</button>
                                     </div>
                                     <div class="filter-row select">
-                                        <div class="multiselect-container" tabindex="0">
-                                            <div class="multiselect">
-                                            <label>Select</label>                             
-                                            <svg width="7" height="5" viewBox="0 0 7 5" fill="none" xmlns="http://www.w3.org/2000/svg" class="down-arrow">
-                                                <path d="M6.64979 9.23058e-07L0.34961 3.72279e-07C0.285824 0.000191102 0.2233 0.0169753 0.168769 0.0485462C0.114237 0.0801171 0.0697631 0.125278 0.0401334 0.17917C0.0105037 0.233062 -0.00315959 0.293644 0.000614572 0.354393C0.00438873 0.415142 0.0254568 0.47376 0.061552 0.523935L3.21164 4.86501C3.3422 5.045 3.6565 5.045 3.78741 4.86501L6.9375 0.523935C6.97396 0.473865 6.99534 0.415218 6.99932 0.354368C7.0033 0.293517 6.98972 0.23279 6.96007 0.178784C6.93041 0.124778 6.88581 0.0795579 6.83111 0.0480385C6.7764 0.0165186 6.71369 -9.53925e-05 6.64979 9.23058e-07Z" fill="#383838"/>
-                                            </svg> 
-                                            <svg width="7" height="5" viewBox="0 0 7 5" fill="none" xmlns="http://www.w3.org/2000/svg" class="up-arrow">
-                                                <path d="M6.64979 5L0.34961 5C0.285824 4.99981 0.2233 4.98302 0.168769 4.95145C0.114237 4.91988 0.0697631 4.87472 0.0401334 4.82083C0.0105037 4.76694 -0.00315959 4.70636 0.000614572 4.64561C0.00438873 4.58486 0.0254568 4.52624 0.061552 4.47607L3.21164 0.134991C3.3422 -0.0449966 3.6565 -0.0449966 3.78741 0.134991L6.9375 4.47606C6.97396 4.52614 6.99534 4.58478 6.99932 4.64563C7.0033 4.70648 6.98972 4.76721 6.96007 4.82122C6.93041 4.87522 6.88581 4.92044 6.83111 4.95196C6.7764 4.98348 6.71369 5.0001 6.64979 5Z" fill="#383838"/>
-                                            </svg>
-                                            </div>
-                                            
-                                            <div class="multiselect-options">
-                                            <!-- <input type="text" class="multiselect-input" placeholder="Search..."> -->
-                                            <div class="multiselect-option"><input type="checkbox">Emmy Frank</div>
-                                            <div class="multiselect-option"><input type="checkbox">Garry Davids</div>
-                                            <div class="multiselect-option"><input type="checkbox">Anne Smith</div>                                              
-                                            <div class="multiselect-option"><input type="checkbox">Garry Davids</div>                                              
-                                            <div class="multiselect-option"><input type="checkbox">Emmy Frank</div>                                              
-                                            </div>
-
-                                        </div>
+                                        <select name="" id="assigned-to" multiple>
+                                            <option value="1">Emmy Frank</option>
+                                            <option value="2">Garry Davids</option>
+                                            <option value="3">Anne Smith</option>
+                                            <option value="4">Emmy Frank</option>
+                                            <option value="5">Garry Davids</option>                                    
+                                        </select>
+                                        <div id="assigned-to-dd"></div>
                                     </div>
                                 </fieldset> 
 
                             </div>
 
                             <fieldset class="buttonRow">
-                                <div class="row">
+                                <div class="filter-row">
                                     <button class="bttn resetall">Reset All</button>
                                     <button class="bttn primary">Apply</button>
                                 </div>
@@ -1241,95 +1181,9 @@
         const gridDiv = document.querySelector('#denialsGrid');
         new agGrid.Grid(gridDiv, gridOptions);
     </script>
-       
+    
 
-    <script>
-        const multiselectContainers = document.querySelectorAll('.multiselect-container');
-        let currentlyOpen = null;
-
-        multiselectContainers.forEach(container => {
-            const multiselect = container.querySelector('.multiselect');
-            const selected = container.querySelector('.multiselect-selected');
-            const optionsContainer = container.querySelector('.multiselect-options');
-            const optionsList = container.querySelectorAll('.multiselect-option');
-            const searchInput = container.querySelector('.multiselect-input');
-
-            const behavior = container.getAttribute('data-multiselect-behavior') || 'exclusive'; // Default to 'exclusive'
-
-            const selectedOptions = [];
-            const selectOption = (option) => {
-                const newOption = document.createElement('div');
-                newOption.classList.add('multiselect-selected');
-                newOption.innerText = option.innerText;
-                newOption.addEventListener('click', () => {
-                    newOption.remove();
-                    const index = selectedOptions.indexOf(option.innerText);
-                    if (index > -1) {
-                        selectedOptions.splice(index, 1);
-                    }
-                    option.classList.remove('selected');
-                });
-                selected.parentNode.insertBefore(newOption, selected);
-                selectedOptions.push(option.innerText);
-                option.classList.add('selected');
-            };
-
-            const deselectAll = () => {
-                const selectedOptions = document.querySelectorAll('.multiselect-selected');
-                selectedOptions.forEach(option => option.remove());
-                optionsList.forEach(option => option.classList.remove('selected'));
-                selectedOptions.length = 0;
-            };
-
-            multiselect.addEventListener('click', (e) => {
-                if (behavior === 'exclusive') {
-                    // Close other multiselects
-                    multiselectContainers.forEach(otherContainer => {
-                        if (otherContainer !== container) {
-                            const otherOptionsContainer = otherContainer.querySelector('.multiselect-options');
-                            const otherMultiselect = otherContainer.querySelector('.multiselect');
-                            otherOptionsContainer.style.display = 'none';
-                            otherMultiselect.classList.remove('open');
-                        }
-                    });
-                }
-
-                // Toggle the current options container
-                const isVisible = optionsContainer.style.display === 'block';
-                optionsContainer.style.display = isVisible ? 'none' : 'block';
-
-                // Add or remove the active class
-                if (isVisible) {
-                    multiselect.classList.remove('open');
-                    currentlyOpen = null;
-                } else {
-                    multiselect.classList.add('open');
-                    currentlyOpen = optionsContainer;
-                }
-            });
-
-            searchInput?.addEventListener('input', () => {
-                const value = searchInput.value.toLowerCase();
-                optionsList.forEach(option => {
-                    if (option.innerText.toLowerCase().includes(value)) {
-                        option.style.display = 'flex';
-                    } else {
-                        option.style.display = 'none';
-                    }
-                });
-            });
-
-            optionsList.forEach(option => {
-                option.addEventListener('click', () => {
-                    if (!option.classList.contains('selected')) {
-                        selectOption(option);
-                    }
-                });
-            });
-        });
-
-    </script>
-
+    
     <script>
         const rdtabs = document.querySelectorAll('.switch li');
         
@@ -1361,17 +1215,13 @@
             denialStatPayerFilter.classList.add('hidden');
             denialsPayerGridFilter.classList.add('hidden');
         }    
-        
-
+       
         settingsBtn.addEventListener('click', () => {
             settingsBtn.classList.toggle('open');
             settingsMenu.style.display = settingsMenu.style.display === 'flex' ? 'none' : 'flex';           
             hideFilters();
         });
-
-
-        
-
+    
         addEventListener('click', (e) => {            
             if(e.target !== settingsBtn){
                 settingsBtn.classList.remove('open');
@@ -1425,8 +1275,108 @@
 
     </script>
 
+    <!-- slim select -->
+    <script>
+
+        new SlimSelect({
+            select: '#denying-payer',
+            settings: {
+                hideSelected:true,
+                closeOnSelect:false,
+                contentPosition: 'relative',
+                contentLocation: document.getElementById('denying-payer-dd'),                
+            }
+        })
+        
+        new SlimSelect({
+            select: '#payer-sequence',
+            settings: {
+                hideSelected:true,
+                closeOnSelect:false,
+                contentPosition: 'relative',
+                contentLocation: document.getElementById('payer-sequence-dd'), 
+                placeholderText: 'Selecte Status',               
+            }
+        })
+
+        new SlimSelect({
+            select: '#status-filter',
+            settings: {
+                hideSelected:true,
+                closeOnSelect:false,
+                contentPosition: 'relative',
+                contentLocation: document.getElementById('status-filter-dd'),                                
+            }
+        })
+
+        
+        new SlimSelect({
+            select: '#assigned-to',
+            settings: {
+                hideSelected:true,
+                closeOnSelect:false,
+                contentPosition: 'relative',
+                contentLocation: document.getElementById('assigned-to-dd'),                
+                placeholderText: 'Select Assignee',
+            }
+        })
 
 
+        new SlimSelect({
+            select: '#denying-payer-settings',
+            settings: {
+                hideSelected:true,
+                closeOnSelect:false,
+                contentPosition: 'relative',
+                contentLocation: document.getElementById('denying-payer-settings-dd'), 
+                alwaysOpen: true,               
+            }
+        })
 
+
+        new SlimSelect({
+            select: '#assigned-to-settings',
+            settings: {
+                hideSelected:true,
+                closeOnSelect:false,
+                contentPosition: 'relative',
+                contentLocation: document.getElementById('assigned-to-settings-dd'),                
+                placeholderText: 'Select Assignee',
+                
+            }
+        })
+        
+    </script>
+
+    <!-- Pikaday -->
+
+    <script>
+        const denialStatfromDate = new Pikaday(
+            { 
+                field: document.getElementById('denialstats-from-date'),
+                format: 'MM/DD/YYYY', 
+            }
+        );
+
+        const denialStattoDate = new Pikaday(
+            { 
+                field: document.getElementById('denialstats-to-date'),
+                format: 'MM/DD/YYYY', 
+            }
+        );
+        const denialsFromDate = new Pikaday(
+            { 
+                field: document.getElementById('denial-from-date'),
+                format: 'MM/DD/YYYY', 
+            }
+        );
+
+        const denialsToDate = new Pikaday(
+            { 
+                field: document.getElementById('denial-to-date'),
+                format: 'MM/DD/YYYY', 
+            }
+        );
+    </script>
 </body>
 </html> 
